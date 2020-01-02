@@ -16,7 +16,7 @@ body {
   width: 200px;
   margin: 10px;
 }
-.login {
+.register {
   background: linear-gradient(to bottom, #21c08b, #8F57FD);
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@ body {
   padding: 0px 30px;
   min-height: calc(100vh - 200px);
 }
-.login__container {
+.register__container {
   background-color: rgba(255, 255, 255, 0.1);
   border: 2px solid white;
   border-radius: 40px;
@@ -38,11 +38,11 @@ body {
   flex-direction: column;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
 }
-.login__container--form {
+.register__container--form {
   display: flex;
   flex-direction: column;
 }
-.login__container--form label {
+.register__container--form label {
   font-size: 14px;
 }
 .input {
@@ -75,40 +75,26 @@ body {
   cursor: pointer;
   height: 50px;
 }
-.login__container--remember-me {
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-.login__container--remember-me a {
-  text-decoration: none;
-  color: white;
-  font-size: 14px;
-}
-.login__container--remember-me a:hover {
-  text-decoration: underline;
-}
-.login__container--social-media {
+.register__container--social-media {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.login__container--social-media > div {
+.register__container--social-media > div {
   font-size: 14px;
   margin-bottom: 10px;
 }
-.login__container--social-media > div > img {
+.register__container--social-media > div > img {
   width: 30px;
   padding: 0px 5px;
   margin: 5px 0px;
   align-self: center;
   justify-self: center;
 }
-.login__container--social-media > div > p {
+.register__container--social-media > div > p {
   margin: 10px 0px;
 }
-.login__container--social-media a {
+.register__container--social-media a {
   color: white;
   text-decoration: none;
 }
@@ -129,17 +115,17 @@ body {
   border-radius: 25px;
   width: 220px;
 }
-.login__container--register {
+.register__container--login {
   font-size: 14px;
   text-align: center;
 }
-.login__container--register a {
+.register__container--login a {
   font-size: 16px;
   color: white;
   font-weight: bold;
   text-decoration: none;
 }
-.login__container--register a:hover {
+.register__container--login a:hover {
   text-decoration: underline;
 }
 .footer {
