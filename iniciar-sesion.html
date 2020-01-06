@@ -10,18 +10,18 @@
 </head>
 <body>
   <header class="header">
-    <img class="header__img" src="assets/images/logo-platzi-video.png" alt="Logo Platzi Video">
+    <img tabindex="0" class="header__img" src="assets/images/logo-platzi-video.png" alt="Logo Platzi Video">
   </header>
   <section class="login">
     <section class="login__container">
-      <h2>Inicia Sesión</h2>
-      <form action="" class="login__container--form">
-        <input type="email" name="" id="" class="input" placeholder="Correo">
-        <input type="password" name="" id="" class="input" placeholder="Contraseña">
+      <h2 tabindex="0">Inicia Sesión</h2>
+      <form class="login__container--form">
+        <input aria-label="Correo" type="email" name="" id="" class="input" placeholder="Correo">
+        <input aria-label="Contraseña" type="password" name="" id="" class="input" placeholder="Contraseña">
         <button class="button">Iniciar Sesión</button>
         <div class="login__container--remember-me">
-          <label for="">
-            <input type="checkbox" name="" id="cbox1" value="checkbox">Recuérdame
+          <label for="cbox1">
+            <input type="checkbox" id="cbox1" value="checkbox">Recuérdame
           </label>
           <a href="">Olvidé mi contraseña</a>
         </div>
