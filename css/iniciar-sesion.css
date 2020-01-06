@@ -1,0 +1,277 @@
+/*------------------------------------*\
+  $PARTIALS
+\*------------------------------------*/
+/*------------------------------------*\
+    $SETTINGS
+\*------------------------------------*/
+/*------------------------------------*\
+    $FONT-FACE
+\*------------------------------------*/
+/**
+*  Fonts definitions
+*/
+/*------------------------------------*\
+    $COLORS
+\*------------------------------------*/
+/**
+*  Brand colors
+*/
+/**
+*  Scss Libraries, mixins, functions and any Scss focused logic
+**/
+/**
+*  HTML elements
+**/
+/**
+*  Layout and general styles
+**/
+/*------------------------------------*\
+  $SITE
+\*------------------------------------*/
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: "Muli", sans-serif;
+  font-size: 16 px;
+  background-color: #8f57fd; }
+
+/*------------------------------------*\
+  $HEADER
+\*------------------------------------*/
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+  .header__img {
+    width: 200px;
+    margin: 10px; }
+
+/*------------------------------------*\
+  $FOOTER
+\*------------------------------------*/
+.footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  background-color: #8f57fd; }
+
+.footer a {
+  color: white;
+  cursor: pointer;
+  font-size: 14 px;
+  padding-left: 30px;
+  text-decoration: none; }
+  .footer a:hover {
+    text-decoration: underline; }
+
+/**
+*  Componets used for layouts, headers, articles, etc...
+**/
+.header {
+  background-color: #21C08B;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between; }
+
+.header__img {
+  width: 200px;
+  margin: 10px; }
+
+.login {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: -webkit-gradient(linear, left top, left bottom, from(#21c08b), to(#8F57FD));
+  background: -webkit-linear-gradient(top, #21c08b, #8F57FD);
+  background: -o-linear-gradient(top, #21c08b, #8F57FD);
+  background: linear-gradient(to bottom, #21c08b, #8F57FD);
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 0px 30px;
+  min-height: calc(100vh - 200px); }
+
+.login__container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 40px;
+  color: white;
+  padding: 60px 68px 40px;
+  min-height: 700px;
+  width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3); }
+
+.login__container--form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  .login__container--form label {
+    font-size: 14 px; }
+
+.input {
+  background-color: transparent;
+  border-top: 0px;
+  border-right: 0px;
+  border-bottom: 2px solid white;
+  border-left: 0px;
+  font-family: "Muli", sans-serif;
+  font-size: 16 px;
+  outline: none;
+  color: white;
+  margin-bottom: 20px;
+  padding: 0px 20px;
+  height: 50px; }
+
+::-webkit-input-placeholder {
+  color: white; }
+
+:-ms-input-placeholder {
+  color: white; }
+
+::-ms-input-placeholder {
+  color: white; }
+
+::placeholder {
+  color: white; }
+
+.button {
+  font-family: 'Muli', sans-serif;
+  font-size: 16 px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white;
+  margin: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  height: 50px; }
+
+.login__container--remember-me {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-top: 10px; }
+  .login__container--remember-me a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px; }
+  .login__container--remember-me a:hover {
+    text-decoration: underline; }
+
+.login__container--social-media {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+  .login__container--social-media > div {
+    font-size: 14px;
+    margin-bottom: 10px; }
+  .login__container--social-media > div > img {
+    width: 30px;
+    padding: 0px 5px;
+    margin: 5px 0px;
+    -ms-flex-item-align: center;
+    -ms-grid-row-align: center;
+    align-self: center;
+    -ms-grid-column-align: center;
+    justify-self: center; }
+  .login__container--social-media > div > p {
+    margin: 10px 0px; }
+  .login__container--social-media a {
+    color: white;
+    text-decoration: none; }
+
+.google {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50px 1fr;
+  grid-template-columns: 50px 1fr;
+  background-color: #db4437;
+  border-radius: 25px;
+  width: 220px; }
+
+.google__img, .twitter__img {
+  border-right: 1px dashed rgba(255, 255, 255, 0.3); }
+
+.twitter {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50px 1fr;
+  grid-template-columns: 50px 1fr;
+  background-color: #00acee;
+  border-radius: 25px;
+  width: 220px; }
+
+.login__container--register {
+  font-size: 14px;
+  text-align: center; }
+  .login__container--register a {
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none; }
+  .login__container--register a:hover {
+    text-decoration: underline; }
+
+@media only screen and (max-width: 600px) {
+  .login__container {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+  .footer {
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column; } }
