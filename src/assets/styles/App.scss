@@ -1,24 +1,10 @@
-/*------------------------------------*\
-  $APP
-\*------------------------------------*/
-
-/*------------------------------------*\
-  $PARTIALS
-\*------------------------------------*/
-
 @import 'utils/variables';
 @import 'utils/mixins';
 @import 'base/globals';
 @import 'layout/header';
 @import 'layout/footer';
-
-/*------------------------------------*\
-$PAGES
-\*------------------------------------*/
-
 @import './views/home';
 @import './views/login';
 @import './views/signup';
 @import './views/404';
-
 @import 'utils/mediaQueries';
