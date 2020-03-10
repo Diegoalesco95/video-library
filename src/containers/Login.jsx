@@ -13,16 +13,16 @@ const Login = () => (
         <input
           aria-label='Correo'
           type='email'
-          name=''
-          id=''
+          name='email'
+          id='email'
           className='input--login'
           placeholder='Correo'
         />
         <input
           aria-label='Contraseña'
           type='password'
-          name=''
-          id=''
+          name='password'
+          id='password'
           className='input--login'
           placeholder='Contraseña'
         />
