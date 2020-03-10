@@ -1,0 +1,54 @@
+/*------------------------------------*\
+  $PAGES
+\*------------------------------------*/
+.header {
+  background-color: #21C08B;
+}
+.header__img {
+  width: 200px;
+  margin: 10px;
+}
+.not-found{
+  background: linear-gradient(to bottom, #21c08b, #8F57FD);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 30px;
+  min-height: calc(100vh - 180px);
+  & > p {
+    color: $white;
+  }
+}
+.not-found__number {
+  margin: 0;
+  font-size: 100px;
+  font-weight: bold;
+  animation-name: hinge;
+  animation-duration: 2.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+.not-found__text {
+  font-size: 20px;
+}
+@keyframes hinge {
+  0% {transform: rotate(0);transform-origin: top left;animation-timing-function: ease-in-out;}
+  20%, 60% {transform: rotate(80deg);transform-origin: top left;animation-timing-function: ease-in-out;}
+  40% {transform: rotate(60deg);transform-origin: top left;animation-timing-function: ease-in-out;}
+  80% {transform: rotate(60deg) translateY(0);transform-origin: top left;animation-timing-function: ease-in-out;}
+  100% {transform: translateY(345px);}
+}
+@media only screen and (max-width: 600px) {
+  .login__container {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+    box-shadow: none;
+  }
+  .footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

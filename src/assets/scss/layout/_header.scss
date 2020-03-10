@@ -1,0 +1,13 @@
+/*------------------------------------*\
+  $HEADER
+\*------------------------------------*/
+.header {
+  @include flex;
+  width: 100%;
+  height: 80px;
+  justify-content: space-between;
+  &__img {
+    width: 200px;
+    margin: 10px;
+  }
+}

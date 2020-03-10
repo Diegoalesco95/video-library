@@ -1,0 +1,30 @@
+/*------------------------------------*\
+  $PARTIALS
+\*------------------------------------*/
+// All files to be compiled
+
+// Base 
+// @import "base/index";
+@import "base/settings";
+
+/**
+*  Scss Libraries, mixins, functions and any Scss focused logic
+**/
+@import "utils/mixins";
+
+/**
+*  HTML elements
+**/
+
+/**
+*  Layout and general styles
+**/
+@import "layout/site";
+@import "layout/header";
+@import "layout/footer";
+
+
+
+/**
+*  Componets used for layouts, headers, articles, etc...
+**/
