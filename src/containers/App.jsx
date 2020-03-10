@@ -20,7 +20,7 @@ const App = () => {
     <div className='App'>
       <Header />
       <Search />
-      {initialState.mylist.length !== 0 && (
+      {initialState.mylist.length > 0 && (
         <Categories title='Mi Lista'>
           <Carousel>
             {initialState.mylist.map((item) => (
