@@ -8,8 +8,8 @@
 /**
 *  Fonts definitions
 */
-$basefont : 'Muli', sans-serif;
-$basefontsize : 16;
+$basefont: 'Muli', sans-serif;
+$basefontsize: 16;
 $alternativefontsize: 14;
 
 /*------------------------------------*\
@@ -18,6 +18,11 @@ $alternativefontsize: 14;
 /**
 *  Brand colors
 */
-$color-principal: rgb(33, 192, 139);
-$color-secondary: rgb(143, 87, 253);
-$white:           rgb(255, 255, 255);
+$color-principal: #21c08b;
+$color-secondary: #8f57fd;
+$white: #ffffff;
+
+$google: #db4437;
+$twitter: #00acee;
+$border: #ffffff4d;
+$shadow: #0000004d;

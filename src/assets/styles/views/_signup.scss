@@ -1,20 +1,15 @@
-.header {
-  background-color: #21C08B;
-  justify-content: space-between;
-}
-.header__img {
-  width: 200px;
-  margin: 10px;
-}
-.login {
+/*------------------------------------*\
+  $SIGN UP
+\*------------------------------------*/
+.register {
   @include flex;
-  background: linear-gradient(to bottom, #21c08b, #8F57FD);
+  background: linear-gradient(to bottom, $color-principal, $color-secondary);
   justify-content: center;
   flex-direction: column;
   padding: 0px 30px;
   min-height: calc(100vh - 200px);
 }
-.login__container {
+.register__container {
   background-color: rgba(255, 255, 255, 0.1);
   border: 2px solid $white;
   border-radius: 40px;
@@ -27,7 +22,7 @@
   flex-direction: column;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
 }
-.login__container--form {
+.register__container--form {
   display: flex;
   flex-direction: column;
   & label {
@@ -41,7 +36,7 @@
   border-bottom: 2px solid $white;
   border-left: 0px;
   font-family: $basefont;
-  font-size:  $basefontsize px;
+  font-size: $basefontsize px;
   outline: none;
   color: $white;
   margin-bottom: 20px;
@@ -64,21 +59,7 @@
   cursor: pointer;
   height: 50px;
 }
-.login__container--remember-me {
-  color: $white;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  & a {
-    text-decoration: none;
-    color: $white;
-    font-size: 14px;
-  }
-  & a:hover {
-    text-decoration: underline;
-  }
-}
-.login__container--social-media {
+.register__container--social-media {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,25 +85,26 @@
 .google {
   display: grid;
   grid-template-columns: 50px 1fr;
-  background-color: rgb(219, 68, 55);
+  background-color: $google;
   border-radius: 25px;
   width: 220px;
 }
-.google__img, .twitter__img {
-  border-right: 1px dashed rgba(255, 255, 255, 0.3);
+.google__img,
+.twitter__img {
+  border-right: 1px dashed $border;
 }
 .twitter {
   display: grid;
   grid-template-columns: 50px 1fr;
-  background-color: rgb(0, 172, 238);
+  background-color: $twitter;
   border-radius: 25px;
   width: 220px;
 }
-.login__container--register {
-  font-size: 14px;
+.register__container--login {
+  font-size: $alternativefontsize;
   text-align: center;
   & a {
-    font-size: 16px;
+    font-size: $basefontsize;
     color: $white;
     font-weight: bold;
     text-decoration: none;
@@ -131,8 +113,9 @@
     text-decoration: underline;
   }
 }
+
 @media only screen and (max-width: 600px) {
-  .login__container {
+  .register__container {
     background-color: transparent;
     border: none;
     padding: 0;

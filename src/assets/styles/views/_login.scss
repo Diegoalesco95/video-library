@@ -1,21 +1,16 @@
-.header {
-  background-color: #21C08B;
-  justify-content: space-between;
-}
-.header__img {
-  width: 200px;
-  margin: 10px;
-}
-.register {
+/*------------------------------------*\
+  $LOG IN
+\*------------------------------------*/
+.login {
   @include flex;
-  background: linear-gradient(to bottom, #21c08b, #8F57FD);
+  background: linear-gradient(to bottom, $color-principal, $color-secondary);
   justify-content: center;
   flex-direction: column;
   padding: 0px 30px;
   min-height: calc(100vh - 200px);
 }
-.register__container {
-  background-color: rgba(255, 255, 255, 0.1);
+.login__container {
+  background-color: #ffffff1a;
   border: 2px solid $white;
   border-radius: 40px;
   color: $white;
@@ -25,9 +20,9 @@
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 10px 10px $shadow;
 }
-.register__container--form {
+.login__container--form {
   display: flex;
   flex-direction: column;
   & label {
@@ -41,7 +36,7 @@
   border-bottom: 2px solid $white;
   border-left: 0px;
   font-family: $basefont;
-  font-size:  $basefontsize px;
+  font-size: $basefontsize px;
   outline: none;
   color: $white;
   margin-bottom: 20px;
@@ -60,11 +55,25 @@
   margin: 10px;
   border: none;
   border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: $border;
   cursor: pointer;
   height: 50px;
 }
-.register__container--social-media {
+.login__container--remember-me {
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  & a {
+    text-decoration: none;
+    color: $white;
+    font-size: 14px;
+  }
+  & a:hover {
+    text-decoration: underline;
+  }
+}
+.login__container--social-media {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,25 +99,26 @@
 .google {
   display: grid;
   grid-template-columns: 50px 1fr;
-  background-color: rgb(219, 68, 55);
+  background-color: $google;
   border-radius: 25px;
   width: 220px;
 }
-.google__img, .twitter__img {
-  border-right: 1px dashed rgba(255, 255, 255, 0.3);
+.google__img,
+.twitter__img {
+  border-right: 1px dashed $border;
 }
 .twitter {
   display: grid;
   grid-template-columns: 50px 1fr;
-  background-color: rgb(0, 172, 238);
+  background-color: $twitter;
   border-radius: 25px;
   width: 220px;
 }
-.register__container--login {
-  font-size: $alternativefontsize;
+.login__container--register {
+  font-size: 14px;
   text-align: center;
   & a {
-    font-size: $basefontsize;
+    font-size: 16px;
     color: $white;
     font-weight: bold;
     text-decoration: none;
@@ -117,9 +127,8 @@
     text-decoration: underline;
   }
 }
-
 @media only screen and (max-width: 600px) {
-  .register__container {
+  .login__container {
     background-color: transparent;
     border: none;
     padding: 0;
