@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Categories = ({ children }) => (
+const Categories = ({ children, title }) => (
   <div className='categories'>
-    <h2 className='categories__title'>Mi Lista</h2>
+    <h2 className='categories__title'>{title}</h2>
     {children}
   </div>
 );
