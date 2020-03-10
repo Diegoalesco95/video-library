@@ -6,7 +6,7 @@
   background: linear-gradient(to bottom, $color-principal, $color-secondary);
   justify-content: center;
   flex-direction: column;
-  padding: 0px 30px;
+  padding: 10px 30px;
   min-height: calc(100vh - 200px);
 }
 .register__container {
@@ -14,7 +14,7 @@
   border: 2px solid $white;
   border-radius: 40px;
   color: $white;
-  padding: 60px 68px 40px;
+  padding: 0px 68px;
   min-height: 700px;
   width: 300px;
   display: flex;
