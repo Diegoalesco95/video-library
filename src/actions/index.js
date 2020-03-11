@@ -3,6 +3,7 @@ import {
   DELETE_FAVORITE,
   LOGIN_REQUEST,
   LOGOUT_REQUEST,
+  SIGNUP_REQUEST,
 } from '../types/index';
 
 export const setFavorite = (payload) => ({
@@ -22,5 +23,10 @@ export const loginRequest = (payload) => ({
 
 export const logoutRequest = (payload) => ({
   type: LOGOUT_REQUEST,
+  payload,
+});
+
+export const signUpRequest = (payload) => ({
+  type: SIGNUP_REQUEST,
   payload,
 });

@@ -3,6 +3,7 @@ import {
   DELETE_FAVORITE,
   LOGIN_REQUEST,
   LOGOUT_REQUEST,
+  SIGNUP_REQUEST,
 } from '../types/index';
 
 export default (state, action) => {
@@ -29,6 +30,11 @@ export default (state, action) => {
         user: action.payload,
       };
     case LOGOUT_REQUEST:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case SIGNUP_REQUEST:
       return {
         ...state,
         user: action.payload,

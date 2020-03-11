@@ -40,7 +40,7 @@ const Header = (props) => {
         <ul>
           {hasUser ? (
             <li>
-              <Link to='/'>{user.name}</Link>
+              <Link to='/'>Ver Pefil</Link>
             </li>
           ) : null}
           {hasUser ? (
@@ -50,9 +50,14 @@ const Header = (props) => {
               </Link>
             </li>
           ) : (
-            <li>
-              <Link to='/login'>Iniciar Sesión</Link>
-            </li>
+            <>
+              <li>
+                <Link to='/login'>Iniciar Sesión</Link>
+              </li>
+              <li>
+                <Link to='/signUp'>Registrarse</Link>
+              </li>
+            </>
           )}
         </ul>
       </div>

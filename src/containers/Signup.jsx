@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signUpRequest } from '../actions';
+
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
 
@@ -21,7 +24,8 @@ const Signup = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(form);
+    props.signUpRequest(form);
+    props.history.push('/');
   };
 
   return (
@@ -93,4 +97,8 @@ const Signup = (props) => {
   );
 };
 
-export default Signup;
+const mapDispacthToProps = {
+  signUpRequest,
+};
+
+export default connect(null, mapDispacthToProps)(Signup);
