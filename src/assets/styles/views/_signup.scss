@@ -3,7 +3,7 @@
 \*------------------------------------*/
 .register {
   @include flex;
-  background: linear-gradient(to bottom, $color-principal, $color-secondary);
+  background: linear-gradient(to bottom, $color-alternative, $color-secondary);
   justify-content: center;
   flex-direction: column;
   padding: 10px 30px;

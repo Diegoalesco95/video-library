@@ -52,6 +52,13 @@
     }
   }
   &__menu--gravatar {
-    border-radius: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
+  &.isLogin {
+    background-color: $color-principal;
+  }
+  &.isSignUp {
+    background-color: $color-alternative;
   }
 }

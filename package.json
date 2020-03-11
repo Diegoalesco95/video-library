@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Diegoalesco95/Platzi-video#readme",
   "dependencies": {
     "babel-eslint": "^10.1.0",
+    "classnames": "^2.2.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.20.1",
