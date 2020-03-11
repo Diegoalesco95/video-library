@@ -1,4 +1,9 @@
-import { SET_FAVORITE, DELETE_FAVORITE, LOGIN_REQUEST } from '../types/index';
+import {
+  SET_FAVORITE,
+  DELETE_FAVORITE,
+  LOGIN_REQUEST,
+  LOGOUT_REQUEST,
+} from '../types/index';
 
 export default (state, action) => {
   switch (action.type) {
@@ -19,6 +24,11 @@ export default (state, action) => {
         myList: state.myList.filter((items) => items.id !== action.payload),
       };
     case LOGIN_REQUEST:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case LOGOUT_REQUEST:
       return {
         ...state,
         user: action.payload,
