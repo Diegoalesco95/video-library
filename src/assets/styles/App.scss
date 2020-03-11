@@ -5,7 +5,8 @@
 @import 'layout/footer';
 @import './views/home';
 @import './views/login';
-@import './components/Player';
+@import './components/player';
+@import './components/pageLoading';
 @import './views/signup';
 @import './views/404';
 @import 'utils/mediaQueries';

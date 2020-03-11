@@ -1,19 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import NotFound from './NotFound';
+import { getVideoSource } from '../actions';
+import PageLoading from '../components/PageLoading';
 
-const Player = (props) => {
-  const { id } = props.match.params;
-  return (
+const Player = ({ match, playing, getVideoSource, history }) => {
+  const { id } = match.params;
+  const [loading, setLoading] = useState(true);
+  const hasPlaying = Object.keys(playing).length > 0;
+
+  useEffect(() => {
+    getVideoSource(id);
+    setLoading(false);
+  }, []);
+
+  return loading ? (
+    <PageLoading />
+  ) : hasPlaying ? (
     <div className='Player'>
       <video controls autoPlay>
-        <source src='video/mp4' />
+        <source src={playing.source} type='video/mp4' />
       </video>
       <div className='Player-back'>
-        <button type='button' onClick={() => props.history.goBack()}>
+        <button type='button' onClick={() => history.goBack()}>
           Regresar
         </button>
       </div>
     </div>
+  ) : (
+    <NotFound />
   );
 };
 
-export default Player;
+const mapStateToProps = (state) => {
+  return {
+    playing: state.playing,
+  };
+};
+
+const mapDispatchToProps = {
+  getVideoSource,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Player);

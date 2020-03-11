@@ -1,9 +1,11 @@
 import {
+  LOADING,
   SET_FAVORITE,
   DELETE_FAVORITE,
   LOGIN_REQUEST,
   LOGOUT_REQUEST,
   SIGNUP_REQUEST,
+  GET_VIDEO_SOURCE,
 } from '../types/index';
 
 export default (state, action) => {
@@ -38,6 +40,19 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload,
+      };
+    case GET_VIDEO_SOURCE:
+      return {
+        ...state,
+        playing:
+          state.trends.find((item) => item.id === Number(action.payload)) ||
+          state.originals.find((item) => item.id === Number(action.payload)) ||
+          [],
+      };
+    case LOADING:
+      return {
+        ...state,
+        loading: true,
       };
     default:
       return state;
