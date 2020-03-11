@@ -1,16 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-const Player = () => {
+const Player = (props) => {
+  const { id } = props.match.params;
   return (
     <div className='Player'>
       <video controls autoPlay>
         <source src='video/mp4' />
       </video>
       <div className='Player-back'>
-        <Link to='/'>
-          <button type='button'>Regresar</button>
-        </Link>
+        <button type='button' onClick={() => props.history.goBack()}>
+          Regresar
+        </button>
       </div>
     </div>
   );
