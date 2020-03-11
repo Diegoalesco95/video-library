@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setFavorite, deleteFavorite } from '../actions';
@@ -28,7 +29,9 @@ const CarouselItem = (props) => {
       <img className='carousel-item__img' src={cover} alt={title} />
       <div className='carousel-item__details'>
         <div className='carousel-item__detail--icon'>
-          <img src={iconPlay} alt='Play' />
+          <Link to={`/player/${id}`}>
+            <img src={iconPlay} alt='Play' />
+          </Link>
 
           {isList ? (
             <img
