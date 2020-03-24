@@ -1,19 +1,28 @@
 language: node_js
 
+cache:
+  directories:
+    - node_modules
+    - ~/.npm
+
+node_js:
+  - '12'
+
 git:
   depth: 3
 
 branches:
   only:
-  - master
-  - stable
+    - master
+    - stable
 
 script:
   - yarm build
 
 notification:
-  recipients:
-    - Diegoalesco95@hotmail.com
+  email:
+    recipients:
+      - Diegoalesco95@hotmail.com
     on_success: always
     on_failure: always
 
