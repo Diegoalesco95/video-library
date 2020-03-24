@@ -11,15 +11,10 @@ node_js:
 git:
   depth: 3
 
-branches:
-  only:
-    - master
-    - stable
-
 script:
-  - yarm build
+  - yarn build
 
-notification:
+notifications:
   email:
     recipients:
       - Diegoalesco95@hotmail.com
@@ -28,11 +23,11 @@ notification:
 
 deploy:
   provider: pages
-  skip-cleanup: true
-  keep-history: true
-  github-token: $GITHUB_TOKEN
-  local-dir: dist/
-  target-branch: gh-pages
+  skip_cleanup: true
+  keep_history: true
+  github_token: $GITHUB_TOKEN
+  local_dir: dist/
+  target_branch: gh-pages
   commit_message: 'Deploy del proyecto'
   on:
     branch: master
