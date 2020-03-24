@@ -1,13 +1,24 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: {
+    app: path.resolve(__dirname, 'src/index.js'),
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    filename: 'js/[name].[hash].js',
+    publicPath: 'https://diegoalesco95.github.io/',
+    chunkFilename: 'js/[id].[chunkhash].js',
+  },
+  optimization: {
+    minimizer: [new TerserJSPlugin(), new OptimizeCssAssetsPlugin()],
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -40,28 +51,38 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|gif|jpg)$/,
+        test: /\.(jpg|png|gif|woff|eot|ttf|svg|mp4|webmg)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              name: 'assets/[hash].[ext]',
+              limit: 1000,
+              name: '[hash].[ext]',
+              outputPath: 'assets',
             },
           },
         ],
       },
     ],
   },
-  devServer: {
-    historyApiFallback: true,
-  },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
-      filename: './index.html',
-    }),
     new MiniCssExtractPlugin({
-      filename: 'assets/[name].css',
+      filename: 'css/[name].[hash].css',
+      chunkFilename: 'css/[id].[hash].css',
+    }),
+    new HtmlWebPackPlugin({
+      template: path.resolve(__dirname, 'public/index.html'),
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: require('./modules-manifest.json'),
+    }),
+    new AddAssetHtmlPlugin({
+      filepath: path.resolve(__dirname, 'dist/js/*.dll.js'),
+      outputPath: 'js/',
+      publicPath: 'https://diegoalesco95.github.io/js/',
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/app.*'],
     }),
   ],
 };
