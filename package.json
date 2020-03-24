@@ -20,14 +20,19 @@
   "homepage": "https://github.com/Diegoalesco95/Platzi-video#readme",
   "dependencies": {
     "babel-eslint": "^10.1.0",
+    "classnames": "^2.2.6",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
+    "md5": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
