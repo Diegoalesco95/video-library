@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].[hash].js',
-    publicPath: 'https://diegoalesco95.github.io/',
+    publicPath: './',
     chunkFilename: 'js/[id].[chunkhash].js',
   },
   optimization: {
@@ -73,16 +73,16 @@ module.exports = {
     new HtmlWebPackPlugin({
       template: path.resolve(__dirname, 'public/index.html'),
     }),
-    new webpack.DllReferencePlugin({
-      manifest: require('./modules-manifest.json'),
-    }),
     new AddAssetHtmlPlugin({
       filepath: path.resolve(__dirname, 'dist/js/*.dll.js'),
       outputPath: 'js/',
-      publicPath: 'https://diegoalesco95.github.io/js/',
+      publicPath: './js/',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/app.*'],
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: require('./modules-manifest.json'),
     }),
   ],
 };
