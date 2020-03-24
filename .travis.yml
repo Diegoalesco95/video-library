@@ -12,6 +12,7 @@ git:
   depth: 3
 
 script:
+  - yarn dll
   - yarn build
 
 notifications:
