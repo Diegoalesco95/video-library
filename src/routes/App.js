@@ -11,10 +11,10 @@ const App = () => (
   <BrowserRouter>
     <Layout>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/signup' component={Signup} />
-        <Route exact path='/player/:id' component={Player} />
+        <Route exact path='Platzi-video/' component={Home} />
+        <Route exact path='Platzi-video/login' component={Login} />
+        <Route exact path='Platzi-video/signup' component={Signup} />
+        <Route exact path='Platzi-video/player/:id' component={Player} />
         <Route component={NotFound} />
       </Switch>
     </Layout>
