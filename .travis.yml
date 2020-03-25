@@ -1,5 +1,9 @@
 language: node_js
 
+os: linux
+
+dist: xenial
+
 cache:
   directories:
     - node_modules
@@ -23,6 +27,7 @@ notifications:
     on_failure: always
 
 deploy:
+  strategy: git
   provider: pages
   skip_cleanup: true
   keep_history: true
