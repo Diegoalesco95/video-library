@@ -79,7 +79,7 @@ const Login = (props) => {
           <p className='login__container--register'>
             ¿No tienes ninguna cuenta?
             <br />
-            <Link to='/signup'>Regístrate!</Link>
+            <Link to='/Platzi-video/signup'>Regístrate!</Link>
           </p>
         </section>
       </section>

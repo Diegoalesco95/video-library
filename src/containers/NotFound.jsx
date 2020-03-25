@@ -5,7 +5,7 @@ const NotFound = () => (
   <section className='not-found'>
     <p className='not-found__number'>404</p>
     <p className='not-found__text'>La página que estas buscando no existe.</p>
-    <Link to='/'>
+    <Link to='/Platzi-video/'>
       <button type='button' className='not-found__button'>
         Volver al inicio
       </button>
