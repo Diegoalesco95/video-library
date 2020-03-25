@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'js/[name].[hash].js',
-    publicPath: './',
+    publicPath: 'Platzi-video/',
     chunkFilename: 'js/[id].[chunkhash].js',
   },
   optimization: {
@@ -76,7 +76,7 @@ module.exports = {
     new AddAssetHtmlPlugin({
       filepath: path.resolve(__dirname, 'dist/js/*.dll.js'),
       outputPath: 'js/',
-      publicPath: './js/',
+      publicPath: 'Platzi-video/js/',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/app.*'],
