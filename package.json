@@ -4,8 +4,9 @@
   "description": "Modelo de una aplicación web para una biblioteca de video.",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --config ./webpack.dev.config.js",
     "dll": "webpack --config ./webpack.dll.config.js --mode production",
+    "start": "webpack-dev-server --config ./webpack.dev.config.js",
+    "start:dev": "node src/server/index.js",
     "build": "webpack --config ./webpack.config.js --mode production"
   },
   "repository": {
@@ -20,14 +21,17 @@
   },
   "homepage": "https://github.com/Diegoalesco95/Platzi-video#readme",
   "dependencies": {
+    "@babel/register": "^7.9.0",
     "@babel/runtime": "^7.9.2",
     "babel-eslint": "^10.1.0",
     "classnames": "^2.2.6",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
+    "express": "^4.17.1",
     "md5": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
