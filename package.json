@@ -6,7 +6,7 @@
   "scripts": {
     "dll": "webpack --config ./webpack.dll.config.js --mode production",
     "start": "webpack-dev-server --config ./webpack.dev.config.js",
-    "start:dev": "node src/server/index.js",
+    "start:dev": "nodemon src/server/index.js",
     "build": "webpack --config ./webpack.config.js --mode production"
   },
   "repository": {
@@ -56,6 +56,7 @@
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.13.1",
+    "nodemon": "^2.0.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
