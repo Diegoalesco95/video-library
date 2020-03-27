@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import express from 'express';
 import webpack from 'webpack';
 import config from './config';
@@ -8,11 +9,8 @@ const app = express();
 
 if (env === 'development') {
   console.log(`Server running on mode ${env}`);
-  // eslint-disable-next-line global-require
   const webpackConfig = require('../../webpack.dev.config');
-  // eslint-disable-next-line global-require
   const webpackDevMiddleware = require('webpack-dev-middleware');
-  // eslint-disable-next-line global-require
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
   const serverConfig = {
@@ -25,7 +23,21 @@ if (env === 'development') {
 }
 
 app.get('*', (req, res) => {
-  res.send({ hello: 'express' });
+  res.send(`
+  <!DOCTYPE html>
+  <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="assets/app.css" type="text/css">
+      <title>Platzi Video</title>
+    </head>
+    <body>
+      <div id="app"></div>
+      <script src="assets/app.js" type="text/javascript"></script>
+    </body>
+  </html>
+  `);
 });
 
 app.listen(port, (error) => {
