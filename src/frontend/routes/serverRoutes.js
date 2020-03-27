@@ -26,6 +26,7 @@ const routes = [
     component: Player,
   },
   {
+    exact: false,
     name: 'NotFound',
     component: NotFound,
   },

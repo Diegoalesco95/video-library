@@ -5,13 +5,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: [
     './src/frontend/index.js',
-    'webpack-hot-middleware/client?path=Platzi-video/__webpack_hmr&timeout=2000&relaod=true',
+    'webpack-hot-middleware/client?path=http://localhost:3001/Platzi-video/__webpack_hmr&timeout=2000&reload=true',
   ],
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'assets/app.js',
-    publicPath: 'http://localhost:3001/Platzi-video/',
+    publicPath: './',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -44,7 +44,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(jpg|png|gif|woff|eot|ttf|svg|mp4|webm)$/,
+        test: /\.(png|gif|jpg)$/,
         use: [
           {
             loader: 'file-loader',

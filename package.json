@@ -23,6 +23,7 @@
   "dependencies": {
     "@babel/register": "^7.9.0",
     "@babel/runtime": "^7.9.2",
+    "asset-require-hook": "^1.2.0",
     "babel-eslint": "^10.1.0",
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
