@@ -32,25 +32,33 @@ if (env === 'development') {
   app.use(webpackHotMiddleware(compiler));
 }
 
-const setResponse = (html) => {
+const setResponse = (html, preloadedState) => {
   return `
   <!DOCTYPE html>
   <html lang="es">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="assets/app.css"  >
+      <link rel="stylesheet" href="css/app.css"  >
       <title>Platzi Video</title>
     </head>
     <body>
       <div id="app">${html}</div>
-      <script src="assets/app.js" type="text/javascript"></script>
+      <script>
+        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+          /</g,
+          '\\u003c'
+        )}
+      </script>
+      <script src="js/app.js" type="text/javascript"></script>
     </body>
-  </html>`;
+  </html>
+  `;
 };
 
 const renderApp = (req, res) => {
   const store = createStore(reducer, initialState);
+  const preloadedState = store.getState();
   const html = renderToString(
     <Provider store={store}>
       <StaticRouter location={req.url} context={{}}>
@@ -58,7 +66,7 @@ const renderApp = (req, res) => {
       </StaticRouter>
     </Provider>
   );
-  res.send(setResponse(html));
+  res.send(setResponse(html, preloadedState));
 };
 
 app.get('*', renderApp);

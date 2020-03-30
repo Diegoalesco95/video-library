@@ -7,7 +7,7 @@ require('@babel/register')({
 
 require('asset-require-hook')({
   extensions: ['jpg', 'png', 'gif'],
-  name: '/assets/[hash].[ext]',
+  name: 'http://localhost:3001/Platzi-video/assets/[hash].[ext]',
 });
 
 require('./server');

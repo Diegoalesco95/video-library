@@ -4,14 +4,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: [
-    './src/frontend/index.js',
-    'webpack-hot-middleware/client?path=http://localhost:3001/Platzi-video/__webpack_hmr&timeout=2000&reload=true',
+    path.resolve(__dirname, 'src/frontend/index.js'),
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true',
   ],
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'assets/app.js',
-    publicPath: './',
+    filename: 'Platzi-video/js/app.js',
+    publicPath: 'http://localhost:3001/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -49,7 +49,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'assets/[hash].[ext]',
+              name: 'Platzi-video/assets/[hash].[ext]',
             },
           },
         ],
@@ -58,11 +58,13 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+    open: true,
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'assets/app.css',
+      filename: 'Platzi-video/css/app.css',
     }),
   ],
 };
