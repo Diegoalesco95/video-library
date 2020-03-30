@@ -93,7 +93,7 @@ const Signup = (props) => {
           <p className='register__container--login'>
             ¿Ya tienes una cuenta?
             <br />
-            <Link to='/Platzi-video/login'>Inicia sesión</Link>
+            <Link to='/login'>Inicia sesión</Link>
           </p>
         </section>
       </section>

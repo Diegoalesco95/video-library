@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => (
   <footer className='footer'>
-    <Link to='/Platzi-video/'>Términos de uso</Link>
-    <Link to='/Platzi-video/'>Declaración de privacidad</Link>
-    <Link to='/Platzi-video/'>Centro de ayuda</Link>
+    <Link to='/'>Términos de uso</Link>
+    <Link to='/'>Declaración de privacidad</Link>
+    <Link to='/'>Centro de ayuda</Link>
   </footer>
 );
 

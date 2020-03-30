@@ -20,7 +20,7 @@ const app = express();
 
 if (env === 'development') {
   console.log(`Server running on mode ${env}`);
-  const webpackConfig = require('../../webpack.dev.config');
+  const webpackConfig = require('../../webpack.config');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
@@ -78,6 +78,6 @@ app.listen(port, (error) => {
   if (error) {
     console.log(error);
   } else {
-    console.log(`Server running on http://localhost:${port}/Platzi-video/`);
+    console.log(`Server running on http://localhost:${port}/`);
   }
 });

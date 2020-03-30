@@ -7,22 +7,22 @@ import NotFound from '../containers/NotFound';
 const routes = [
   {
     exact: true,
-    path: '/Platzi-video/',
+    path: '/',
     component: Home,
   },
   {
     exact: true,
-    path: '/Platzi-video/login',
+    path: '/login',
     component: Login,
   },
   {
     exact: true,
-    path: '/Platzi-video/signup',
+    path: '/signup',
     component: Signup,
   },
   {
     exact: true,
-    path: '/Platzi-video/player/:id',
+    path: '/player/:id',
     component: Player,
   },
   {

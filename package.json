@@ -4,10 +4,8 @@
   "description": "Modelo de una aplicación web para una biblioteca de video.",
   "main": "index.js",
   "scripts": {
-    "dll": "webpack --config ./webpack.dll.config.js --mode production",
-    "start": "webpack-dev-server --config ./webpack.dev.config.js",
     "start:dev": "nodemon src/server/index",
-    "build": "webpack --config ./webpack.config.js --mode production"
+    "build": "webpack-cli --config webpack.config.js"
   },
   "repository": {
     "type": "git",
