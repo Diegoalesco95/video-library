@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin')
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 require('dotenv').config();
 
@@ -28,7 +28,21 @@ module.exports = {
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()]
+    minimizer: [new TerserPlugin()],
+    splitChunks: {
+      chunks: 'async',
+      name: true,
+      cacheGroups: {
+        vendors: {
+          name: 'vendors',
+          chunks: 'all',
+          reuseExistingchunk: true,
+          priority: 1,
+          filename: isDev ? 'js/vendor.js' : 'js/vendor-[hash].js',
+          enforce: true,
+        },
+      },
+    },
   },
   module: {
     rules: [
@@ -74,9 +88,7 @@ module.exports = {
         test: /\.(js|jsx)$|\.(s*)css$/,
         filename: '[path].gz',
       }),
-    isDev
-      ? () => {}
-      : new ManifestPlugin(),
+    isDev ? () => {} : new ManifestPlugin(),
     new MiniCssExtractPlugin({
       filename: isDev ? 'css/app.css' : 'css/app-[hash].css',
     }),
