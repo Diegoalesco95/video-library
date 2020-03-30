@@ -2,6 +2,7 @@
 import express from 'express';
 import webpack from 'webpack';
 import React from 'react';
+import helmet from 'helmet';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -30,6 +31,11 @@ if (env === 'development') {
 
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
+} else {
+  app.use(express.static(`${__dirname}/public`));
+  app.use(helmet());
+  app.use(helmet.permittedCrossDomainPolicies());
+  app.disable('x-powered-by');
 }
 
 const setResponse = (html, preloadedState) => {
@@ -45,10 +51,7 @@ const setResponse = (html, preloadedState) => {
     <body>
       <div id="app">${html}</div>
       <script>
-        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
-          /</g,
-          '\\u003c'
-        )}
+        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
       </script>
       <script src="js/app.js" type="text/javascript"></script>
     </body>
@@ -64,7 +67,7 @@ const renderApp = (req, res) => {
       <StaticRouter location={req.url} context={{}}>
         <Layout>{renderRoutes(serverRoutes)}</Layout>
       </StaticRouter>
-    </Provider>
+    </Provider>,
   );
   res.send(setResponse(html, preloadedState));
 };
