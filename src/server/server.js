@@ -13,6 +13,7 @@ import reducer from '../frontend/reducers';
 import initialState from '../frontend/initialState';
 import Layout from '../frontend/components/Layout';
 import config from './config';
+import getManifest from './getManifest';
 
 const { env, port } = config;
 
@@ -32,28 +33,37 @@ if (env === 'development') {
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
 } else {
+  app.use((req, res, next) => {
+    if (!req.hashManifest) req.hashManifest = getManifest();
+    next();
+  });
   app.use(express.static(`${__dirname}/public`));
   app.use(helmet());
   app.use(helmet.permittedCrossDomainPolicies());
   app.disable('x-powered-by');
 }
 
-const setResponse = (html, preloadedState) => {
+const setResponse = (html, preloadedState, manifest) => {
+  const mainStyles = manifest ? manifest['main.css'] : 'css/app.css';
+  const mainBuild = manifest ? manifest['main.js'] : 'js/app.js';
   return `
   <!DOCTYPE html>
   <html lang="es">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="css/app.css"  >
+      <link rel="stylesheet" href="${mainStyles}"  >
       <title>Platzi Video</title>
     </head>
     <body>
       <div id="app">${html}</div>
       <script>
-        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(
+    /</g,
+    '\\u003c',
+  )}
       </script>
-      <script src="js/app.js" type="text/javascript"></script>
+      <script src="${mainBuild}" type="text/javascript"></script>
     </body>
   </html>
   `;
@@ -69,7 +79,7 @@ const renderApp = (req, res) => {
       </StaticRouter>
     </Provider>,
   );
-  res.send(setResponse(html, preloadedState));
+  res.send(setResponse(html, preloadedState, req.hashManifest));
 };
 
 app.get('*', renderApp);

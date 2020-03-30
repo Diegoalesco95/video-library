@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin')
 
 require('dotenv').config();
 
@@ -20,7 +21,7 @@ module.exports = {
   mode: process.env.ENV,
   output: {
     path: path.resolve(__dirname, 'src/server/public'),
-    filename: 'js/app.js',
+    filename: isDev ? 'js/app.js' : 'js/app-[hash].js',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -73,8 +74,11 @@ module.exports = {
         test: /\.(js|jsx)$|\.(s*)css$/,
         filename: '[path].gz',
       }),
+    isDev
+      ? () => {}
+      : new ManifestPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/app.css',
+      filename: isDev ? 'css/app.css' : 'css/app-[hash].css',
     }),
   ],
 };
