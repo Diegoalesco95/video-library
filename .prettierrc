@@ -1,14 +1,11 @@
 {
-  "trailingComma": "es5",
+  "printWidth": 140,
+  "tabWidth": 2,
+  "useTabs": false,
   "semi": true,
   "singleQuote": true,
-  "jsxSingleQuote": true,
-  "arrowParens": "always",
-  "indent": [
-    2,
-    2,
-    {
-      "SwitchCase": 1
-    }
-  ]
+  "trailingComma": "es5",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": true,
+  "arrowParens": "always"
 }

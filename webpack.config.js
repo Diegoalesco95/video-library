@@ -12,9 +12,7 @@ const isDev = process.env.ENV === 'development';
 const entry = ['./src/frontend/index.js'];
 
 if (isDev) {
-  entry.push(
-    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true',
-  );
+  entry.push('webpack-hot-middleware/client?path=/__webpack_hmr&timeout=2000&reload=true');
 }
 
 module.exports = {
@@ -43,10 +41,7 @@ module.exports = {
           enforce: true,
           test(module, chunks) {
             const name = module.nameForCondition && module.nameForCondition();
-            return chunks.some(
-              (chunk) => chunk.name !== 'vendors'
-                && /[\\/]node_modules[\\/]/.test(name),
-            );
+            return chunks.some((chunk) => chunk.name !== 'vendors' && /[\\/]node_modules[\\/]/.test(name));
           },
         },
       },
@@ -54,6 +49,12 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -90,18 +91,9 @@ module.exports = {
   },
   plugins: [
     isDev ? new webpack.HotModuleReplacementPlugin() : () => {},
-    isDev
-      ? () => {}
-      : new CompressionWebpackPlugin({
-        test: /\.(js|jsx)$|\.(s*)css$/,
-        filename: '[path].gz',
-      }),
+    isDev ? () => {} : new CompressionWebpackPlugin({ test: /\.(js|jsx)$|\.(s*)css$/, filename: '[path].gz' }),
     isDev ? () => {} : new ManifestPlugin(),
-    isDev
-      ? () => {}
-      : new CleanWebpackPlugin({
-        cleanOnceBeforeBuildPatterns: path.resolve(__dirname, 'src/server/public'),
-      }),
+    isDev ? () => {} : new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: path.resolve(__dirname, 'src/server/public') }),
     new MiniCssExtractPlugin({
       filename: isDev ? 'css/app.css' : 'css/app-[hash].css',
     }),
