@@ -46,6 +46,7 @@ if (env === 'development') {
 const setResponse = (html, preloadedState, manifest) => {
   const mainStyles = manifest ? manifest['main.css'] : 'css/app.css';
   const mainBuild = manifest ? manifest['main.js'] : 'js/app.js';
+  const vendorBuild = manifest ? manifest['vendors.js'] : 'js/vendor.js';
   return `
   <!DOCTYPE html>
   <html lang="es">
@@ -63,6 +64,7 @@ const setResponse = (html, preloadedState, manifest) => {
     '\\u003c',
   )}
       </script>
+      <script src="${vendorBuild}" type="text/javascript"></script>
       <script src="${mainBuild}" type="text/javascript"></script>
     </body>
   </html>
