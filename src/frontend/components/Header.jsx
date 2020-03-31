@@ -20,7 +20,7 @@ const Header = (props) => {
 
   return (
     <header className={headerClass}>
-      <Link to='/Platzi-video/'>
+      <Link to='/'>
         <img className='header__img' src={Logo} alt='Logo Platzi Video' />
       </Link>
       <div className='header__menu'>
@@ -44,22 +44,22 @@ const Header = (props) => {
         <ul>
           {hasUser ? (
             <li>
-              <Link to='/Platzi-video/'>Ver Pefil</Link>
+              <Link to='/'>Ver Pefil</Link>
             </li>
           ) : null}
           {hasUser ? (
             <li>
-              <Link to='/Platzi-video/login' onClick={handleLogout}>
+              <Link to='/login' onClick={handleLogout}>
                 Cerrar Sesión
               </Link>
             </li>
           ) : (
             <>
               <li>
-                <Link to='/Platzi-video/login'>Iniciar Sesión</Link>
+                <Link to='/login'>Iniciar Sesión</Link>
               </li>
               <li>
-                <Link to='/Platzi-video/signUp'>Registrarse</Link>
+                <Link to='/signUp'>Registrarse</Link>
               </li>
             </>
           )}

@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signUpRequest } from '../actions';
+import { Link } from 'react-router-dom';
+import { loginRequest } from '../actions';
 import Header from '../components/Header';
-
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
 
 import '../assets/styles/App.scss';
 
-const Signup = (props) => {
+const Login = (props) => {
   const [form, setValues] = useState({
     email: '',
-    name: '',
-    password: '',
   });
 
   const handleInput = (event) => {
@@ -25,32 +22,23 @@ const Signup = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.signUpRequest(form);
+    props.loginRequest(form);
     props.history.push('/');
   };
 
   return (
     <>
-      <Header isSignUp />
-      <section className='register'>
-        <section className='register__container'>
-          <h2>Regístrate</h2>
-          <form className='register__container--form' onSubmit={handleSubmit}>
-            <input
-              name='name'
-              aria-label='Nombre'
-              type='text'
-              id='name'
-              className='input--signup'
-              placeholder='Nombre'
-              onChange={handleInput}
-            />
+      <Header isLogin />
+      <section className='login'>
+        <section className='login__container'>
+          <h2>Inicia Sesión</h2>
+          <form className='login__container--form' onSubmit={handleSubmit}>
             <input
               name='email'
               aria-label='Correo'
               type='email'
               id='email'
-              className='input--signup'
+              className='input--login'
               placeholder='Correo'
               onChange={handleInput}
             />
@@ -59,41 +47,39 @@ const Signup = (props) => {
               aria-label='Contraseña'
               type='password'
               id='password'
-              className='input--signup'
+              className='input--login'
               placeholder='Contraseña'
               onChange={handleInput}
             />
-            <input
-              aria-label='Confirmar contraseña'
-              type='password'
-              name='password'
-              id='confirm-password'
-              className='input--signup'
-              placeholder='Confirmar contraseña'
-              onChange={handleInput}
-            />
-            <button type='submit' className='button'>
-              Registrarme
+            <button className='button' type='submit'>
+              Iniciar Sesión
             </button>
+            <div className='login__container--remember-me'>
+              <label htmlFor='cbox1'>
+                <input type='checkbox' id='cbox1' value='checkbox' />
+                Recuérdame
+              </label>
+              <a href='/'>Olvidé mi contraseña</a>
+            </div>
           </form>
-          <section className='register__container--social-media'>
+          <section className='login__container--social-media'>
             <div className='google'>
               <img className='google__img' src={googleIcon} alt='Google' />
               <p>
-                <a href='/'>Registro con Google </a>
+                <a href='/'>Inicia sesión con Google</a>
               </p>
             </div>
             <div className='twitter'>
               <img className='twitter__img' src={twitterIcon} alt='Twitter' />
               <p>
-                <a href='/'>Registro con Twitter</a>
+                <a href='/'>Inicia sesión con Twitter</a>
               </p>
             </div>
           </section>
-          <p className='register__container--login'>
-            ¿Ya tienes una cuenta?
+          <p className='login__container--register'>
+            ¿No tienes ninguna cuenta?
             <br />
-            <Link to='/Platzi-video/login'>Inicia sesión</Link>
+            <Link to='/signup'>Regístrate!</Link>
           </p>
         </section>
       </section>
@@ -102,7 +88,7 @@ const Signup = (props) => {
 };
 
 const mapDispacthToProps = {
-  signUpRequest,
+  loginRequest,
 };
 
-export default connect(null, mapDispacthToProps)(Signup);
+export default connect(null, mapDispacthToProps)(Login);

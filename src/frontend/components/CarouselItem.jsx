@@ -29,7 +29,7 @@ const CarouselItem = (props) => {
       <img className='carousel-item__img' src={cover} alt={title} />
       <div className='carousel-item__details'>
         <div className='carousel-item__detail--icon'>
-          <Link to={`/Platzi-video/player/${id}`}>
+          <Link to={`/player/${id}`}>
             <img src={iconPlay} alt='Play' />
           </Link>
 
