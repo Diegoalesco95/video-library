@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signUpRequest } from '../actions';
+import { signUpUser } from '../actions';
 import Header from '../components/Header';
 
 import googleIcon from '../assets/static/google-icon.png';
@@ -25,8 +25,7 @@ const Signup = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.signUpRequest(form);
-    props.history.push('/');
+    props.signUpUser(form, '/login');
   };
 
   return (
@@ -44,6 +43,7 @@ const Signup = (props) => {
               className='input--signup'
               placeholder='Nombre'
               onChange={handleInput}
+              required
             />
             <input
               name='email'
@@ -53,6 +53,7 @@ const Signup = (props) => {
               className='input--signup'
               placeholder='Correo'
               onChange={handleInput}
+              required
             />
             <input
               name='password'
@@ -62,6 +63,7 @@ const Signup = (props) => {
               className='input--signup'
               placeholder='Contraseña'
               onChange={handleInput}
+              required
             />
             <input
               aria-label='Confirmar contraseña'
@@ -71,6 +73,7 @@ const Signup = (props) => {
               className='input--signup'
               placeholder='Confirmar contraseña'
               onChange={handleInput}
+              required
             />
             <button type='submit' className='button'>
               Registrarme
@@ -102,7 +105,7 @@ const Signup = (props) => {
 };
 
 const mapDispacthToProps = {
-  signUpRequest,
+  signUpUser,
 };
 
 export default connect(null, mapDispacthToProps)(Signup);

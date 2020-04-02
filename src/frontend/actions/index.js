@@ -1,11 +1,5 @@
-import {
-  SET_FAVORITE,
-  DELETE_FAVORITE,
-  LOGIN_REQUEST,
-  LOGOUT_REQUEST,
-  SIGNUP_REQUEST,
-  GET_VIDEO_SOURCE,
-} from '../types/index';
+import axios from 'axios';
+import { SET_FAVORITE, DELETE_FAVORITE, LOGIN_REQUEST, LOGOUT_REQUEST, SET_ERROR, SIGNUP_REQUEST, GET_VIDEO_SOURCE } from '../types/index';
 
 export const setFavorite = (payload) => ({
   type: SET_FAVORITE,
@@ -27,6 +21,11 @@ export const logoutRequest = (payload) => ({
   payload,
 });
 
+export const setError = (payload) => ({
+  type: SET_ERROR,
+  payload,
+});
+
 export const signUpRequest = (payload) => ({
   type: SIGNUP_REQUEST,
   payload,
@@ -36,3 +35,15 @@ export const getVideoSource = (payload) => ({
   type: GET_VIDEO_SOURCE,
   payload,
 });
+
+export const signUpUser = (payload, redirectUrl) => {
+  return (dispatch) => {
+    axios
+      .post('/auth/sign-up', payload)
+      .then(({ data }) => dispatch(signUpRequest(data)))
+      .then(() => {
+        window.location.href = redirectUrl;
+      })
+      .catch((err) => dispatch(setError(err)));
+  };
+};
