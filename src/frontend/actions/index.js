@@ -70,3 +70,18 @@ export const loginUser = ({ email, password }, redirectUrl) => {
       .catch((err) => dispatch(setError(err)));
   };
 };
+
+export const setFavoriteUserMovie = (payload) => {
+  const { _id: movieId } = payload;
+  return (dispatch) => {
+    axios({
+      url: '/user-movies',
+      method: 'post',
+      data: { movieId },
+    })
+      .then(() => {
+        dispatch(setFavorite(payload));
+      })
+      .catch((error) => dispatch(setError(error)));
+  };
+};

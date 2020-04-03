@@ -9,9 +9,11 @@ import iconPlus from '../assets/static/plus.png';
 import iconDelete from '../assets/static/remove-icon.png';
 
 const CarouselItem = (props) => {
-  const { id, cover, title, year, contentRating, duration, isList } = props;
+  const { id, _id, cover, title, year, contentRating, duration, isList } = props;
+
   const handleSetFavorite = () => {
-    props.setFavorite({
+    props.setFavoriteUserMovie({
+      _id,
       id,
       cover,
       title,
@@ -34,19 +36,13 @@ const CarouselItem = (props) => {
           </Link>
 
           {isList ? (
-            <img
-              src={iconDelete}
-              alt='Delete'
-              onClick={() => handleDeleteFavorite(id)}
-            />
+            <img src={iconDelete} alt='Delete' onClick={() => handleDeleteFavorite(id)} />
           ) : (
             <img src={iconPlus} alt='Plus' onClick={handleSetFavorite} />
           )}
         </div>
         <h2 className='carousel-item__details--title'>{title}</h2>
-        <p className='carousel-item__details--subtitle'>
-          {`${year} ${contentRating} ${duration}`}
-        </p>
+        <p className='carousel-item__details--subtitle'>{`${year} ${contentRating} ${duration}`}</p>
       </div>
     </div>
   );

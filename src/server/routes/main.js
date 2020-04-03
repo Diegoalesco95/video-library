@@ -5,18 +5,20 @@ import { renderRoutes } from 'react-router-config';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 
-// import axios from 'axios';
+import axios from 'axios';
 
 import Layout from '../../frontend/components/Layout';
 import reducer from '../../frontend/reducers';
 import serverRoutes from '../../frontend/routes/serverRoutes';
 import setResponse from '../render/index';
 
-const renderApp = (req, res, next) => {
+const { config } = require('../config/index');
+
+const renderApp = async (req, res, next) => {
   try {
     let initialState;
     try {
-      const { email, name, id } = req.cookies;
+      const { token, email, name, id } = req.cookies;
       let user = {};
 
       if (email || name || id) {
@@ -26,15 +28,45 @@ const renderApp = (req, res, next) => {
           name,
         };
       }
+
+      let movieList = await axios({
+        url: `${config.apiUrl}/api/movies`,
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'get',
+      });
+
+      let userList = await axios({
+        url: `${config.apiUrl}/api/user-movies?userId=${id}`,
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'get',
+      });
+
+      movieList = movieList.data.data;
+      userList = userList.data.data;
+
+      const myList = [];
+
       initialState = {
         user,
         playing: {},
-        myList: [],
-        trends: [],
-        originals: [],
+        myList: userList.filter((movie) => {
+          data.data.filter((id) => {
+            if (id.movieId === movie._id) {
+              myList.push(movie);
+            }
+          });
+        }),
+        trends: movieList.filter((movie) => movie.contentRating === 'PG' && movie.id),
+        originals: movieList.filter((movie) => movie.contentRating === 'G' && movie.id),
       };
     } catch (error) {
-      console.log(error);
+      initialState = {
+        user: {},
+        playing: {},
+        myList: [],
+        trends: {},
+        originals: {},
+      };
     }
     const isLogged = initialState.user.id;
     const store = createStore(reducer, initialState);
