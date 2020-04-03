@@ -1,11 +1,4 @@
 /* eslint-disable global-require */
-import React from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import { renderRoutes } from 'react-router-config';
-import { renderToString } from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom';
-
 import axios from 'axios';
 import boom from '@hapi/boom';
 import cookieParser from 'cookie-parser';
@@ -15,15 +8,18 @@ import passport from 'passport';
 import session from 'express-session';
 import webpack from 'webpack';
 
-import getManifest from './getManifest';
-import initialState from '../frontend/initialState';
-import Layout from '../frontend/components/Layout';
-import reducer from '../frontend/reducers';
-import serverRoutes from '../frontend/routes/serverRoutes';
+import renderApp from './routes/main';
 
 const { config } = require('./config/index');
 
 const app = express();
+
+app.use(express.json());
+app.use(cookieParser());
+app.use(session({ secret: config.sessionSecret }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(`${__dirname}/public`));
 
 if (config.dev === 'development') {
   console.log(`Server running on mode ${config.dev}`);
@@ -32,72 +28,26 @@ if (config.dev === 'development') {
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
   const serverConfig = {
+    contentBase: 'http://localhost.publicPath',
     port: config.port,
+    publicPath: webpackConfig.output.publicPath,
     hot: true,
+    historyApiFallback: true,
+    stats: { colors: true },
   };
-
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
 } else {
-  app.use((req, res, next) => {
-    if (!req.hashManifest) req.hashManifest = getManifest();
-    next();
-  });
   app.use(helmet());
-  app.use(express.static(`${__dirname}/public`));
   app.use(helmet.permittedCrossDomainPolicies());
   app.disable('x-powered-by');
 }
-
-app.use(express.json());
-app.use(cookieParser());
-app.use(session({ secret: config.sessionSecret }));
-app.use(passport.initialize());
-app.use(passport.session());
 
 require('./utils/auth/strategies/basic');
 require('./utils/auth/strategies/oauth');
 require('./utils/auth/strategies/google');
 require('./utils/auth/strategies/twitter');
 require('./utils/auth/strategies/facebook');
-
-const setResponse = (html, preloadedState, manifest) => {
-  const mainStyles = manifest ? manifest['main.css'] : 'css/app.css';
-  const mainBuild = manifest ? manifest['main.js'] : 'js/app.js';
-  const vendorBuild = manifest ? manifest['vendors.js'] : 'js/vendor.js';
-  return `
-  <!DOCTYPE html>
-  <html lang="es">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="${mainStyles}"  >
-      <title>Platzi Video</title>
-    </head>
-    <body>
-      <div id="app">${html}</div>
-      <script>
-        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
-      </script>
-      <script src="${vendorBuild}" type="text/javascript"></script>
-      <script src="${mainBuild}" type="text/javascript"></script>
-    </body>
-  </html>
-  `;
-};
-
-const renderApp = (req, res) => {
-  const store = createStore(reducer, initialState);
-  const preloadedState = store.getState();
-  const html = renderToString(
-    <Provider store={store}>
-      <StaticRouter location={req.url} context={{}}>
-        <Layout>{renderRoutes(serverRoutes)}</Layout>
-      </StaticRouter>
-    </Provider>,
-  );
-  res.send(setResponse(html, preloadedState, req.hashManifest));
-};
 
 app.post('/auth/sign-in', async (req, res, next) => {
   passport.authenticate('basic', async (error, data) => {
@@ -156,7 +106,7 @@ app.post('/user-movies', async (req, res, next) => {
     });
 
     if (status !== 201) {
-      return next(boom.badImplementation());
+      next(boom.badImplementation());
     }
 
     res.status(201).json(data);
@@ -177,7 +127,7 @@ app.delete('/user-movies/:userMovieId', async (req, res, next) => {
     });
 
     if (status !== 200) {
-      return next(boom.badImplementation());
+      next(boom.badImplementation());
     }
 
     res.status(200).json(data);
