@@ -17,12 +17,17 @@ const renderApp = (req, res, next) => {
     let initialState;
     try {
       const { email, name, id } = req.cookies;
-      initialState = {
-        user: {
+      let user = {};
+
+      if (email || name || id) {
+        user = {
           id,
           email,
           name,
-        },
+        };
+      }
+      initialState = {
+        user,
         playing: {},
         myList: [],
         trends: [],
