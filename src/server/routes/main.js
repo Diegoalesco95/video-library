@@ -7,7 +7,6 @@ import { StaticRouter } from 'react-router-dom';
 
 // import axios from 'axios';
 
-import initialState from '../../frontend/initialState';
 import Layout from '../../frontend/components/Layout';
 import reducer from '../../frontend/reducers';
 import serverRoutes from '../../frontend/routes/serverRoutes';
@@ -15,6 +14,23 @@ import setResponse from '../render/index';
 
 const renderApp = (req, res, next) => {
   try {
+    let initialState;
+    try {
+      const { email, name, id } = req.cookies;
+      initialState = {
+        user: {
+          id,
+          email,
+          name,
+        },
+        playing: {},
+        myList: [],
+        trends: [],
+        originals: [],
+      };
+    } catch (error) {
+      console.log(error);
+    }
     const isLogged = initialState.user.id;
     const store = createStore(reducer, initialState);
     const html = renderToString(

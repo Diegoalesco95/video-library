@@ -64,7 +64,7 @@ app.post('/auth/sign-in', async (req, res, next) => {
           httpOnly: !config.dev,
           secure: !config.dev,
         });
-        res.status(200).json(user);
+        res.status(200).json(user.user);
       });
     } catch (error) {
       next(error);
