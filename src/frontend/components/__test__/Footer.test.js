@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { shallow, configure } from 'enzyme';
+import { render, shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Footer from '../Footer';
 
@@ -16,5 +16,9 @@ describe('Footer testing', () => {
     const footer = shallow(<Footer />);
     const footerElem = footer.find('footer');
     expect(footerElem.hasClass('footer')).toBe(true);
+  });
+  test('footer haver 3 anchor tags', () => {
+    const footer = render(<Footer />);
+    expect(footer.find('a')).toHaveLength(3);
   });
 });
