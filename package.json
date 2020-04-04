@@ -8,6 +8,7 @@
     "start:dev": "DEBUG=express:*,app:* nodemon src/server/index",
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "build": "webpack-cli --config webpack.config.js"
   },
   "jest": {
