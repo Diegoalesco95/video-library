@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component Match Snapshot 1`] = `
+Array [
+  <header
+    className="header isSignUp"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="Logo Platzi Video"
+        className="header__img"
+        src="test-file.stubs"
+      />
+    </a>
+    <div
+      className="header__menu"
+    >
+      <div
+        className="header__menu--profile"
+      >
+        <img
+          alt="user Icon"
+          src="test-file.stubs"
+        />
+        <p>
+          Menu
+        </p>
+      </div>
+      <ul>
+        <li>
+          <a
+            href="/login"
+            onClick={[Function]}
+          >
+            Iniciar Sesión
+          </a>
+        </li>
+        <li>
+          <a
+            href="/signUp"
+            onClick={[Function]}
+          >
+            Registrarse
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>,
+  <section
+    className="register"
+  >
+    <section
+      className="register__container"
+    >
+      <h2>
+        Regístrate
+      </h2>
+      <form
+        className="register__container--form"
+        onSubmit={[Function]}
+      >
+        <input
+          aria-label="Nombre"
+          className="input--signup"
+          id="name"
+          name="name"
+          onChange={[Function]}
+          placeholder="Nombre"
+          required={true}
+          type="text"
+        />
+        <input
+          aria-label="Correo"
+          className="input--signup"
+          id="email"
+          name="email"
+          onChange={[Function]}
+          placeholder="Correo"
+          required={true}
+          type="email"
+        />
+        <input
+          aria-label="Contraseña"
+          className="input--signup"
+          id="password"
+          name="password"
+          onChange={[Function]}
+          placeholder="Contraseña"
+          required={true}
+          type="password"
+        />
+        <input
+          aria-label="Confirmar contraseña"
+          className="input--signup"
+          id="confirm-password"
+          name="password"
+          onChange={[Function]}
+          placeholder="Confirmar contraseña"
+          required={true}
+          type="password"
+        />
+        <button
+          className="button"
+          type="submit"
+        >
+          Registrarme
+        </button>
+      </form>
+      <section
+        className="register__container--social-media"
+      >
+        <div
+          className="google"
+        >
+          <img
+            alt="Google"
+            className="google__img"
+            src="test-file.stubs"
+          />
+          <p>
+            <a
+              href="/"
+            >
+              Registro con Google 
+            </a>
+          </p>
+        </div>
+        <div
+          className="twitter"
+        >
+          <img
+            alt="Twitter"
+            className="twitter__img"
+            src="test-file.stubs"
+          />
+          <p>
+            <a
+              href="/"
+            >
+              Registro con Twitter
+            </a>
+          </p>
+        </div>
+      </section>
+      <p
+        className="register__container--login"
+      >
+        ¿Ya tienes una cuenta?
+        <br />
+        <a
+          href="/login"
+          onClick={[Function]}
+        >
+          Inicia sesión
+        </a>
+      </p>
+    </section>
+  </section>,
+]
+`;
