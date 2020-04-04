@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component Match Snapshot 1`] = `
+<header
+  className="header"
+>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="Logo Platzi Video"
+      className="header__img"
+      src="test-file.stubs"
+    />
+  </a>
+  <div
+    className="header__menu"
+  >
+    <div
+      className="header__menu--profile"
+    >
+      <img
+        alt="user Icon"
+        src="test-file.stubs"
+      />
+      <p>
+        Menu
+      </p>
+    </div>
+    <ul>
+      <li>
+        <a
+          href="/login"
+          onClick={[Function]}
+        >
+          Iniciar Sesión
+        </a>
+      </li>
+      <li>
+        <a
+          href="/signUp"
+          onClick={[Function]}
+        >
+          Registrarse
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+`;

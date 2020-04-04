@@ -3,12 +3,13 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Router } from 'react-router';
 import { Provider } from 'react-redux';
-import { createBrowserhistory } from 'history';
+import { render } from 'react-dom';
+import { createBrowserHistory } from 'history';
 import initialState from '../initialState';
-import reducer from '../reducers/index';
+import reducer from '../reducers';
 
 const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
-const history = createBrowserhistory();
+const history = createBrowserHistory();
 
 const ProviderMock = (props) => (
   <Provider store={store}>
