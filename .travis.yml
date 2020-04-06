@@ -17,6 +17,7 @@ git:
 
 script:
   - yarn build
+  - node src/server
 
 notifications:
   email:
@@ -31,7 +32,7 @@ deploy:
   skip_cleanup: true
   keep_history: true
   github_token: $GITHUB_TOKEN
-  local_dir: src/server/public
+  local_dir: src/server
   target_branch: gh-pages
   commit_message: 'Deploy del proyecto'
   on:
