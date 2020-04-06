@@ -63,6 +63,7 @@ app.post('/auth/sign-in', async (req, res, next) => {
         res.cookie('token', token, {
           httpOnly: !config.dev,
           secure: !config.dev,
+          domain: 'https://diegoalesco95.github.io/Platzi-video/',
         });
         res.status(200).json(user.user);
       });
