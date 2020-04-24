@@ -2,8 +2,8 @@
 import axios from 'axios';
 import boom from '@hapi/boom';
 import cookieParser from 'cookie-parser';
-import helmet from 'helmet';
 import express from 'express';
+import helmet from 'helmet';
 import passport from 'passport';
 import session from 'express-session';
 import webpack from 'webpack';
@@ -19,20 +19,16 @@ app.use(cookieParser());
 app.use(session({ secret: config.sessionSecret }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(`${__dirname}/public`));
 
-if (config.dev === 'development') {
-  console.log(`Server running on mode ${config.dev}`);
+if (config.dev) {
+  console.log(`Server running on mode Development:${config.dev}`);
   const webpackConfig = require('../../webpack.config');
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const compiler = webpack(webpackConfig);
   const serverConfig = {
-    contentBase: 'http://localhost.publicPath',
     port: config.port,
-    publicPath: webpackConfig.output.publicPath,
     hot: true,
-    historyApiFallback: true,
     stats: { colors: true },
   };
   app.use(webpackDevMiddleware(compiler, serverConfig));
@@ -42,6 +38,8 @@ if (config.dev === 'development') {
   app.use(helmet.permittedCrossDomainPolicies());
   app.disable('x-powered-by');
 }
+
+// STRATEGIES
 
 require('./utils/auth/strategies/basic');
 require('./utils/auth/strategies/oauth');
@@ -63,7 +61,7 @@ app.post('/auth/sign-in', async (req, res, next) => {
         res.cookie('token', token, {
           httpOnly: !config.dev,
           secure: !config.dev,
-          domain: 'https://diegoalesco95.github.io/Platzi-video/',
+          // domain: 'https://diegoalesco95.github.io/Platzi-video/',
         });
         res.status(200).json(user.user);
       });
@@ -79,7 +77,11 @@ app.post('/auth/sign-up', async (req, res, next) => {
     const userData = await axios({
       url: `${config.apiUrl}/api/auth/sign-up`,
       method: 'post',
-      data: user,
+      data: {
+        email: user.email,
+        name: user.name,
+        password: user.password,
+      },
     });
 
     res.status(201).json({
@@ -142,6 +144,8 @@ app.delete('/user-movies/:userMovieId', async (req, res, next) => {
   }
 });
 
+// GOOGLE STRATEGY
+
 app.get(
   '/auth/google-oauth',
   passport.authenticate('google-oauth', {
@@ -184,6 +188,8 @@ app.get('/auth/google/callback', passport.authenticate('google', { session: fals
   res.status(200).json(user);
 });
 
+// TWITTER STRATEGY
+
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', passport.authenticate('twitter', { session: false }), (req, res, next) => {
   if (!req.user) {
@@ -197,6 +203,8 @@ app.get('/auth/twitter/callback', passport.authenticate('twitter', { session: fa
   });
   res.status(200).json(user);
 });
+
+// FACEBOOK STRATEGY
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
@@ -214,6 +222,8 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', { session: 
 
   res.status(200).json(user);
 });
+
+//
 
 app.get('*', renderApp);
 

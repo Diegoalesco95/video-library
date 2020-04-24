@@ -1,13 +1,13 @@
 import fs from 'fs';
-import config from './config/index';
 
 const getManifest = () => {
   try {
-    if (config.dev !== 'development') {
-      return JSON.parse(fs.readFileSync(`${__dirname}/public/manifest.json`));
-    }
+    return JSON.parse(fs.readFileSync(`${__dirname}/public/manifest.json`), 'utf8');
   } catch (error) {
-    console.log(error);
+    return {
+      'main.css': '/assets/app.css',
+      'main.js': '/assets/app.js',
+    };
   }
 };
 

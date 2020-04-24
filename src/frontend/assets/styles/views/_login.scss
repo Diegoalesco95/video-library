@@ -96,23 +96,31 @@
     text-decoration: none;
   }
 }
+.google__img,
+.twitter__img,
+.facebook__img {
+  border-right: 1px dashed $border;
+}
 .google {
   display: grid;
   grid-template-columns: 50px 1fr;
   background-color: $google;
-  border-radius: 25px;
-  width: 220px;
-}
-.google__img,
-.twitter__img {
-  border-right: 1px dashed $border;
+  border-radius: 5px;
+  width: 250px;
 }
 .twitter {
   display: grid;
   grid-template-columns: 50px 1fr;
   background-color: $twitter;
-  border-radius: 25px;
-  width: 220px;
+  border-radius: 5px;
+  width: 250px;
+}
+.facebook {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  background-color: $facebook;
+  border-radius: 5px;
+  width: 250px;
 }
 .login__container--register {
   font-size: 14px;

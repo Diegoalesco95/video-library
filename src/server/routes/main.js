@@ -78,7 +78,7 @@ const renderApp = async (req, res, next) => {
       </Provider>,
     );
     const preloadedState = store.getState();
-    res.send(setResponse(html, preloadedState));
+    res.send(setResponse(html, preloadedState, req.hashManifest));
   } catch (error) {
     next(error);
   }

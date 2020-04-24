@@ -6,7 +6,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-require('dotenv').config();
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const isDev = process.env.ENV === 'development';
 const entry = ['./src/frontend/index.js'];
@@ -16,11 +18,12 @@ if (isDev) {
 }
 
 module.exports = {
+  mode: isDev ? 'development' : 'production',
   entry,
-  mode: process.env.ENV,
   output: {
-    path: path.resolve(__dirname, 'src/server/public'),
-    filename: isDev ? 'js/app.js' : 'js/app-[hash].js',
+    path: isDev ? '/' : path.resolve(__dirname, 'src/server/public'),
+    filename: isDev ? 'assets/app.js' : 'assets/app-[hash].js',
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -37,7 +40,7 @@ module.exports = {
           chunks: 'all',
           reuseExistingChunk: true,
           priority: 1,
-          filename: isDev ? 'js/vendor.js' : 'js/vendor-[hash].js',
+          filename: isDev ? 'assets/vendor.js' : 'assets/vendor-[hash].js',
           enforce: true,
           test(module, chunks) {
             const name = module.nameForCondition && module.nameForCondition();
@@ -94,7 +97,7 @@ module.exports = {
     isDev ? () => {} : new ManifestPlugin(),
     isDev ? () => {} : new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: path.resolve(__dirname, 'src/server/public') }),
     new MiniCssExtractPlugin({
-      filename: isDev ? 'css/app.css' : 'css/app-[hash].css',
+      filename: isDev ? 'assets/app.css' : 'assets/app-[hash].css',
     }),
   ],
 };

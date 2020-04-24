@@ -5,6 +5,7 @@ import { loginUser } from '../actions/index';
 import Header from '../components/Header';
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
+import facebookIcon from '../assets/static/facebook.png';
 
 import '../assets/styles/App.scss';
 
@@ -67,13 +68,19 @@ const Login = (props) => {
             <div className='google'>
               <img className='google__img' src={googleIcon} alt='Google' />
               <p>
-                <a href='/'>Inicia sesión con Google</a>
+                <a href='/auth/google/'>Inicia sesión con Google</a>
               </p>
             </div>
             <div className='twitter'>
               <img className='twitter__img' src={twitterIcon} alt='Twitter' />
               <p>
-                <a href='/'>Inicia sesión con Twitter</a>
+                <a href='/auth/twitter'>Inicia sesión con Twitter</a>
+              </p>
+            </div>
+            <div className='facebook'>
+              <img className='facebook__img' src={facebookIcon} alt='FacebookIcon' />
+              <p>
+                <a href='/auth/facebook'>Inicia sesión con Facebook</a>
               </p>
             </div>
           </section>

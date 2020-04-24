@@ -1,23 +1,32 @@
+import express from 'express';
 import getManifest from '../getManifest';
 
-const { config } = require('../config/index');
+const app = express();
 
-let manifest = false;
-if (config.dev !== 'development') {
-  manifest = getManifest();
+const dotenv = require('dotenv');
+
+dotenv.config();
+const isProd = process.env.ENV !== 'development';
+
+if (isProd) {
+  app.use((req, res, next) => {
+    req.hashManifest = getManifest();
+    next();
+  });
 }
 
-const setResponse = (html, preloadedState) => {
-  const mainStyles = manifest ? manifest['main.css'] : 'css/app.css';
-  const mainBuild = manifest ? manifest['main.js'] : 'js/app.js';
-  const vendorBuild = manifest ? manifest['vendors.js'] : 'js/vendor.js';
+const setResponse = (html, preloadedState, manifest) => {
+  const mainStyles = manifest ? manifest['main.css'] : '/assets/app.css';
+  const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
+  const vendorBuild = manifest ? manifest['vendors.js'] : 'assets/vendor.js';
   return `
   <!DOCTYPE html>
   <html lang="es">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="${mainStyles}"  >
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="${mainStyles}" type="text/css" />
       <title>Platzi Video</title>
     </head>
     <body>
