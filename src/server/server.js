@@ -1,24 +1,38 @@
 /* eslint-disable global-require */
-import axios from 'axios';
-import boom from '@hapi/boom';
-import cookieParser from 'cookie-parser';
-import express from 'express';
-import helmet from 'helmet';
-import passport from 'passport';
-import session from 'express-session';
+import express, { json, static as _static } from 'express';
+import helmet, { permittedCrossDomainPolicies } from 'helmet';
 import webpack from 'webpack';
+import React from 'react';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { renderRoutes } from 'react-router-config';
+import { renderToString } from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
+import cookieParser from 'cookie-parser';
+import { unauthorized, badImplementation } from '@hapi/boom';
+import passport from 'passport';
+import axios from 'axios';
 
-import renderApp from './routes/main';
+import Layout from '../frontend/components/Layout';
+import reducer from '../frontend/reducers';
+import serverRoutes from '../frontend/routes/serverRoutes';
+import getManifest from './getManifest';
 
-const { config } = require('./config/index');
+import { config } from './config/index';
+
+import './utils/auth/strategies/basic';
+import './utils/auth/strategies/oauth';
+import './utils/auth/strategies/google';
+import './utils/auth/strategies/twitter';
+import './utils/auth/strategies/facebook';
 
 const app = express();
 
-app.use(express.json());
+app.use(json());
 app.use(cookieParser());
-app.use(session({ secret: config.sessionSecret }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(_static(`${__dirname}/public`));
 
 if (config.dev) {
   console.log(`Server running on mode Development:${config.dev}`);
@@ -34,18 +48,111 @@ if (config.dev) {
   app.use(webpackDevMiddleware(compiler, serverConfig));
   app.use(webpackHotMiddleware(compiler));
 } else {
+  app.use((req, res, next) => {
+    req.hashManifest = getManifest();
+    next();
+  });
   app.use(helmet());
-  app.use(helmet.permittedCrossDomainPolicies());
+  app.use(permittedCrossDomainPolicies());
   app.disable('x-powered-by');
 }
 
-// STRATEGIES
+// RENDER
 
-require('./utils/auth/strategies/basic');
-require('./utils/auth/strategies/oauth');
-require('./utils/auth/strategies/google');
-require('./utils/auth/strategies/twitter');
-require('./utils/auth/strategies/facebook');
+const setResponse = (html, preloadedState, manifest) => {
+  const mainStyles = manifest ? manifest['main.css'] : '/assets/app.css';
+  const mainBuild = manifest ? manifest['main.js'] : '/assets/app.js';
+  const vendorBuild = manifest ? manifest['vendors.js'] : '/assets/vendor.js';
+  return `
+  <!DOCTYPE html>
+  <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <link rel="stylesheet" href="${mainStyles}" type="text/css" />
+      <title>Platzi Video</title>
+    </head>
+    <body>
+      <div id="app">${html}</div>
+      <script>
+        window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState).replace(/</g, '\\u003c')}
+      </script>
+      <script src="${vendorBuild}" type="text/javascript"></script>
+      <script src="${mainBuild}" type="text/javascript"></script>
+    </body>
+  </html>
+  `;
+};
+
+const renderApp = async (req, res, next) => {
+  try {
+    let initialState;
+    const { token, email, name, id } = req.cookies;
+    try {
+      let userList = await axios({
+        url: `${config.apiUrl}/api/user-movies?userId=${id}`,
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'get',
+      });
+      userList = userList.data.data;
+
+      let movieList = await axios({
+        url: `${config.apiUrl}/api/movies`,
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'get',
+      });
+      movieList = movieList.data.data;
+
+      const myList = [];
+
+      userList.forEach((userMovie) => {
+        movieList.forEach((movie) => {
+          if (movie._id === userMovie.movieId) {
+            myList.push(movie);
+          }
+        });
+      });
+
+      initialState = {
+        user: {
+          id,
+          email,
+          name,
+        },
+        playing: {},
+        userList,
+        myList,
+        trends: movieList.filter((movie) => movie.contentRating === 'NC-17' && movie._id),
+        originals: movieList.filter((movie) => movie.contentRating === 'G' && movie._id),
+      };
+    } catch (error) {
+      initialState = {
+        user: {},
+        playing: {},
+        userList: [],
+        myList: [],
+        trends: {},
+        originals: {},
+      };
+    }
+    const isLogged = initialState.user.id;
+    const store = createStore(reducer, initialState);
+    const html = renderToString(
+      <Provider store={store}>
+        <StaticRouter location={req.url} context={{}}>
+          <Layout>{renderRoutes(serverRoutes(isLogged))}</Layout>
+        </StaticRouter>
+      </Provider>,
+    );
+    const preloadedState = store.getState();
+    res.send(setResponse(html, preloadedState, req.hashManifest));
+  } catch (error) {
+    next(error);
+  }
+};
+
+// STRATEGIES
 
 const THIRTY_DAYS_IN_SEC = 2592000;
 const TWO_HOURS_IN_SEC = 1800;
@@ -56,7 +163,7 @@ app.post('/auth/sign-in', async (req, res, next) => {
   passport.authenticate('basic', async (error, data) => {
     try {
       if (error || !data) {
-        next(boom.unauthorized());
+        next(unauthorized());
       }
       req.login(data, { session: false }, async (error) => {
         if (error) {
@@ -112,7 +219,7 @@ app.get('/movies', async (req, res, next) => {
     });
 
     if (status !== 200) {
-      return next(boom.badImplementation());
+      return next(badImplementation());
     }
 
     return res.status(200).json(data);
@@ -139,7 +246,7 @@ app.post('/user-movies', async (req, res, next) => {
     });
 
     if (status !== 200 && status !== 201) {
-      return next(boom.badImplementation());
+      return next(badImplementation());
     }
 
     return res.status(201).json(data);
@@ -160,7 +267,7 @@ app.delete('/user-movies/:userMovieId', async (req, res, next) => {
     });
 
     if (status !== 200) {
-      next(boom.badImplementation());
+      next(badImplementation());
     }
 
     res.status(200).json(data);
@@ -180,7 +287,7 @@ app.get(
 
 app.get('/auth/google-oauth/callback', passport.authenticate('google-oauth', { session: false }), (req, res, next) => {
   if (!req.user) {
-    next(boom.unauthorized());
+    next(unauthorized());
   }
   const { token, ...user } = req.user;
   res.cookie('token', token, {
@@ -200,7 +307,7 @@ app.get(
 
 app.get('/auth/google/callback', passport.authenticate('google', { session: false }), (req, res, next) => {
   if (!req.user) {
-    next(boom.unauthorized());
+    next(unauthorized());
   }
 
   const { token, ...user } = req.user;
@@ -218,7 +325,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { session: fals
 app.get('/auth/twitter', passport.authenticate('twitter'));
 app.get('/auth/twitter/callback', passport.authenticate('twitter', { session: false }), (req, res, next) => {
   if (!req.user) {
-    next(boom.unauthorized());
+    next(unauthorized());
   }
   const { token, ...user } = req.user;
 
@@ -235,7 +342,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { session: false }), (req, res, next) => {
   if (!req.user) {
-    next(boom.unauthorized());
+    next(unauthorized());
   }
 
   const { token, ...user } = req.user;
