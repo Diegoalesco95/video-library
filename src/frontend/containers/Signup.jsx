@@ -114,7 +114,7 @@ const Signup = (props) => {
             <div className='google'>
               <img className='google__img' src={googleIcon} alt='GoogleIcon' />
               <p>
-                <a href='/auth/google/'>Registro con Google </a>
+                <a href='/auth/google-oauth/'>Registro con Google </a>
               </p>
             </div>
             <div className='twitter'>
