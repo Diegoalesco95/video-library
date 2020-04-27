@@ -11,7 +11,7 @@ exports[`Header component Match Snapshot 1`] = `
     <img
       alt="Logo Platzi Video"
       className="header__img"
-      src="test-file.stubs"
+      src="test-file.stub"
     />
   </a>
   <div
@@ -22,7 +22,7 @@ exports[`Header component Match Snapshot 1`] = `
     >
       <img
         alt="user Icon"
-        src="test-file.stubs"
+        src="test-file.stub"
       />
       <p>
         Menu

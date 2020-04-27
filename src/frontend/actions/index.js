@@ -48,7 +48,7 @@ export const signUpUser = (payload, redirectUrl) => {
   };
 };
 
-export const loginUser = ({ email, password }, redirectUrl) => {
+export const loginUser = ({ email, password, rememberMe }, redirectUrl) => {
   return (dispatch) => {
     axios({
       url: '/auth/sign-in',
@@ -57,6 +57,7 @@ export const loginUser = ({ email, password }, redirectUrl) => {
         username: email,
         password,
       },
+      data: { rememberMe },
     })
       .then(({ data }) => {
         document.cookie = `email=${data.email}`;
@@ -81,6 +82,9 @@ export const setFavoriteUserMovie = (payload) => {
     })
       .then(() => {
         dispatch(setFavorite(payload));
+      })
+      .then(() => {
+        window.location.reload();
       })
       .catch((error) => dispatch(setError(error)));
   };

@@ -1,4 +1,4 @@
-import { setFavorite, loginRequest, logoutRequest } from '../index';
+import { setFavorite, loginRequest, logoutRequest } from '../../actions/index';
 import movieMock from '../../__mocks__/movieMock';
 import { SET_FAVORITE, LOGIN_REQUEST, LOGOUT_REQUEST } from '../../types/index';
 

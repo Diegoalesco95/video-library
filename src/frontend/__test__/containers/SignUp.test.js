@@ -1,13 +1,10 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { mount, configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { mount } from 'enzyme';
 import ProviderMock from '../../__mocks__/ProviderMock';
-import SignUp from '../Signup';
+import SignUp from '../../containers/Signup';
 
-configure({ adapter: new Adapter() });
-
-describe('Header component', () => {
+describe('SignUp Container', () => {
   test('Match Snapshot', () => {
     const signup = create(
       <ProviderMock>

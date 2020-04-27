@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import ProviderMock from '../../__mocks__/ProviderMock';
-import CarouselItem from '../CarouselItem';
+import CarouselItem from '../../components/CarouselItem';
 
 describe('Carousel Item component', () => {
   test('Match Snapshot', () => {

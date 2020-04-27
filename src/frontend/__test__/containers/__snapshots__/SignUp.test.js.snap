@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header component Match Snapshot 1`] = `
+exports[`SignUp Container Match Snapshot 1`] = `
 Array [
   <header
     className="header isSignUp"
@@ -12,7 +12,7 @@ Array [
       <img
         alt="Logo Platzi Video"
         className="header__img"
-        src="test-file.stubs"
+        src="test-file.stub"
       />
     </a>
     <div
@@ -23,7 +23,7 @@ Array [
       >
         <img
           alt="user Icon"
-          src="test-file.stubs"
+          src="test-file.stub"
         />
         <p>
           Menu
@@ -69,7 +69,6 @@ Array [
           name="name"
           onChange={[Function]}
           placeholder="Nombre"
-          required={true}
           type="text"
         />
         <input
@@ -79,7 +78,6 @@ Array [
           name="email"
           onChange={[Function]}
           placeholder="Correo"
-          required={true}
           type="email"
         />
         <input
@@ -89,17 +87,14 @@ Array [
           name="password"
           onChange={[Function]}
           placeholder="Contraseña"
-          required={true}
           type="password"
         />
         <input
           aria-label="Confirmar contraseña"
           className="input--signup"
           id="confirm-password"
-          name="password"
-          onChange={[Function]}
+          name="passwordConfirmation"
           placeholder="Confirmar contraseña"
-          required={true}
           type="password"
         />
         <button
@@ -116,13 +111,13 @@ Array [
           className="google"
         >
           <img
-            alt="Google"
+            alt="GoogleIcon"
             className="google__img"
-            src="test-file.stubs"
+            src="test-file.stub"
           />
           <p>
             <a
-              href="/"
+              href="/auth/google/"
             >
               Registro con Google 
             </a>
@@ -132,15 +127,31 @@ Array [
           className="twitter"
         >
           <img
-            alt="Twitter"
+            alt="TwitterIcon"
             className="twitter__img"
-            src="test-file.stubs"
+            src="test-file.stub"
           />
           <p>
             <a
-              href="/"
+              href="/auth/twitter"
             >
               Registro con Twitter
+            </a>
+          </p>
+        </div>
+        <div
+          className="facebook"
+        >
+          <img
+            alt="FacebookIcon"
+            className="facebook__img"
+            src="test-file.stub"
+          />
+          <p>
+            <a
+              href="/auth/facebook"
+            >
+              Registro con Facebook
             </a>
           </p>
         </div>

@@ -19,13 +19,13 @@ exports[`Carousel Item component Match Snapshot 1`] = `
       >
         <img
           alt="Play"
-          src="test-file.stubs"
+          src="test-file.stub"
         />
       </a>
       <img
         alt="Plus"
         onClick={[Function]}
-        src="test-file.stubs"
+        src="test-file.stub"
       />
     </div>
     <h2

@@ -15,6 +15,7 @@ const Login = (props) => {
     email: '',
     id: '',
     name: '',
+    rememberMe: '',
   });
 
   const handleInput = (event) => {
@@ -22,6 +23,7 @@ const Login = (props) => {
       ...form,
       [event.target.name]: event.target.value,
     });
+    console.log(form);
   };
 
   const handleSubmit = (event) => {
@@ -61,7 +63,7 @@ const Login = (props) => {
             </button>
             <div className='login__container--remember-me'>
               <label htmlFor='cbox1'>
-                <input type='checkbox' id='cbox1' value='checkbox' />
+                <input name='rememberMe' type='checkbox' id='cbox1' onClick={handleInput} />
                 Recuérdame
               </label>
               <a href='/'>Olvidé mi contraseña</a>

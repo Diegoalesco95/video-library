@@ -12,6 +12,10 @@
     "build": "webpack-cli --config webpack.config.js"
   },
   "jest": {
+    "verbose": true,
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/frontend/__test__/setupTest.js"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/frontend/__mocks__/fileMock.js",
       "\\.(scss|sass)$": "<rootDir>/src/frontend/__mocks__/styleMock.js"
@@ -99,5 +103,8 @@
     "sass-loader": "^8.0.2",
     "terser-webpack-plugin": "^2.3.5",
     "webpack-dev-server": "^3.10.3"
+  },
+  "engines": {
+    "node": "12.16.x"
   }
 }
