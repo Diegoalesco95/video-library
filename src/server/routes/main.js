@@ -17,52 +17,49 @@ const { config } = require('../config/index');
 const renderApp = async (req, res, next) => {
   try {
     let initialState;
+    const { token, email, name, id } = req.cookies;
     try {
-      const { token, email, name, id } = req.cookies;
-      let user = {};
-
-      if (email || name || id) {
-        user = {
-          id,
-          email,
-          name,
-        };
-      }
+      let userList = await axios({
+        url: `${config.apiUrl}/api/user-movies?userId=${id}`,
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'get',
+      });
+      userList = userList.data.data;
 
       let movieList = await axios({
         url: `${config.apiUrl}/api/movies`,
         headers: { Authorization: `Bearer ${token}` },
         method: 'get',
       });
-
-      let userList = await axios({
-        url: `${config.apiUrl}/api/user-movies?userId=${id}`,
-        headers: { Authorization: `Bearer ${token}` },
-        method: 'get',
-      });
-
       movieList = movieList.data.data;
-      userList = userList.data.data;
 
       const myList = [];
 
+      userList.forEach((userMovie) => {
+        movieList.forEach((movie) => {
+          if (movie._id === userMovie.movieId) {
+            myList.push(movie);
+          }
+        });
+      });
+
       initialState = {
-        user,
+        user: {
+          id,
+          email,
+          name,
+        },
         playing: {},
-        myList: userList.filter((movie) => {
-          data.data.filter((id) => {
-            if (id.movieId === movie._id) {
-              myList.push(movie);
-            }
-          });
-        }),
-        trends: movieList.filter((movie) => movie.contentRating === 'PG' && movie.id),
-        originals: movieList.filter((movie) => movie.contentRating === 'G' && movie.id),
+        userList,
+        myList,
+        trends: movieList.filter((movie) => movie.contentRating === 'NC-17' && movie._id),
+        originals: movieList.filter((movie) => movie.contentRating === 'G' && movie._id),
       };
     } catch (error) {
       initialState = {
         user: {},
         playing: {},
+        userList: [],
         myList: [],
         trends: {},
         originals: {},

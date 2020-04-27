@@ -13,7 +13,8 @@ export default (state, action) => {
     case DELETE_FAVORITE:
       return {
         ...state,
-        myList: state.myList.filter((items) => items.id !== action.payload),
+        myList: state.myList.filter((items) => items._id !== action.payload.movieId),
+        userList: state.userList.filter((items) => items._id !== action.payload._id),
       };
     case LOGIN_REQUEST:
       return {

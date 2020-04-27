@@ -94,7 +94,26 @@ app.post('/auth/sign-up', async (req, res, next) => {
   }
 });
 
-app.get('/movies', async (req, res, next) => {});
+app.get('/movies', async (req, res, next) => {
+  try {
+    const { token, id } = req.cookies;
+
+    const { data, status } = await axios({
+      url: `${config.apiUrl}/api/user-movies`,
+      headers: { Authorization: `Bearer ${token}` },
+      method: 'get',
+      query: { id },
+    });
+
+    if (status !== 200) {
+      return next(boom.badImplementation());
+    }
+
+    return res.status(200).json(data);
+  } catch (error) {
+    next(error);
+  }
+});
 
 app.post('/user-movies', async (req, res, next) => {
   try {
@@ -113,11 +132,11 @@ app.post('/user-movies', async (req, res, next) => {
       data: userMovie,
     });
 
-    if (status !== 201) {
-      next(boom.badImplementation());
+    if (status !== 200 && status !== 201) {
+      return next(boom.badImplementation());
     }
 
-    res.status(201).json(data);
+    return res.status(201).json(data);
   } catch (error) {
     next(error);
   }

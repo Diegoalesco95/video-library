@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../actions/index';
@@ -10,12 +11,14 @@ import facebookIcon from '../assets/static/facebook.png';
 import '../assets/styles/App.scss';
 
 const Login = (props) => {
-  const [form, setValues] = useState({
+  const [form, setForm] = useState({
     email: '',
+    id: '',
+    name: '',
   });
 
   const handleInput = (event) => {
-    setValues({
+    setForm({
       ...form,
       [event.target.name]: event.target.value,
     });
@@ -97,6 +100,10 @@ const Login = (props) => {
 
 const mapDispacthToProps = {
   loginUser,
+};
+
+Login.propTypes = {
+  loginUser: PropTypes.func,
 };
 
 export default connect(null, mapDispacthToProps)(Login);

@@ -85,3 +85,18 @@ export const setFavoriteUserMovie = (payload) => {
       .catch((error) => dispatch(setError(error)));
   };
 };
+
+export const deleteFavoriteUserMovie = (payload) => {
+  const { _id: userMovieId } = payload;
+
+  return (dispatch) => {
+    axios({
+      url: `/user-movies/${userMovieId}`,
+      method: 'delete',
+    })
+      .then(() => {
+        dispatch(deleteFavorite(payload));
+      })
+      .catch((error) => dispatch(setError(error)));
+  };
+};
