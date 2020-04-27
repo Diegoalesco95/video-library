@@ -24,6 +24,7 @@
 }
 .register__container--form {
   display: flex;
+  position: relative;
   flex-direction: column;
   & label {
     font-size: $alternativefontsize px;
@@ -82,24 +83,6 @@
     text-decoration: none;
   }
 }
-.google {
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  background-color: $google;
-  border-radius: 25px;
-  width: 220px;
-}
-.google__img,
-.twitter__img {
-  border-right: 1px dashed $border;
-}
-.twitter {
-  display: grid;
-  grid-template-columns: 50px 1fr;
-  background-color: $twitter;
-  border-radius: 25px;
-  width: 220px;
-}
 .register__container--login {
   font-size: $alternativefontsize;
   text-align: center;
@@ -111,5 +94,64 @@
   }
   & a:hover {
     text-decoration: underline;
+  }
+}
+
+.Error_name,
+.Error_email,
+.Error_password,
+.Error_password-conf {
+  background-color: $white;
+  text-align: left;
+  margin: 5px;
+  padding: 5px 15px 5px 0;
+  position: absolute;
+  color: black;
+  border: 1px solid $white;
+  border-radius: 10px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
+
+  &:before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: $white;
+    left: -15px;
+    transform: rotate(45deg);
+  }
+  & ul li {
+    font-size: 1em;
+  }
+}
+
+.Error_name {
+  top: -14px;
+  right: -255px;
+  &:before {
+    top: 15px;
+  }
+}
+.Error_email {
+  top: 60px;
+  right: -240px;
+  &:before {
+    top: 15px;
+  }
+}
+
+.Error_password {
+  top: 130px;
+  right: -310px;
+  &:before {
+    top: 20px;
+  }
+}
+
+.Error_password-conf {
+  top: 200px;
+  right: -310px;
+  &:before {
+    top: 20px;
   }
 }

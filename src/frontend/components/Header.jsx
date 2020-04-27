@@ -13,7 +13,12 @@ const Header = (props) => {
   const hasUser = Object.keys(user).length > 0;
 
   const handleLogout = () => {
+    document.cookie = 'email=';
+    document.cookie = 'name=';
+    document.cookie = 'id=';
+    document.cookie = 'token=';
     props.logoutRequest({});
+    window.location.href = '/login';
   };
 
   const headerClass = classNames('header', { isLogin, isSignUp });
@@ -27,11 +32,7 @@ const Header = (props) => {
         <div className='header__menu--profile'>
           {hasUser ? (
             <>
-              <img
-                className='header__menu--gravatar'
-                src={gravatar(user.email)}
-                alt={user.email}
-              />
+              <img className='header__menu--gravatar' src={gravatar(user.email)} alt={user.email} />
               <p>{user.name}</p>
             </>
           ) : (

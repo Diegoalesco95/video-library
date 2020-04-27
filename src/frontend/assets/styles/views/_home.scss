@@ -66,7 +66,7 @@
   background-color: $white;
   width: 200px;
   height: 250px;
-  border-radius: 20px;
+  border-radius: 5px;
   overflow: hidden;
   margin-right: 10px;
   display: inline-block;
@@ -86,11 +86,7 @@
   z-index: 1;
 }
 .carousel-item__details {
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.9) 0%,
-    rgba(0, 0, 0, 0.9) 100%
-  );
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.9) 100%);
   font-size: 10px;
   opacity: 0;
   transition: 450ms opacity;

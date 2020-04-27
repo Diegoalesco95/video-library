@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { loginRequest } from '../actions';
+import { loginUser } from '../actions/index';
 import Header from '../components/Header';
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';
+import facebookIcon from '../assets/static/facebook.png';
 
 import '../assets/styles/App.scss';
 
 const Login = (props) => {
-  const [form, setValues] = useState({
+  const [form, setForm] = useState({
     email: '',
+    id: '',
+    name: '',
+    rememberMe: '',
   });
 
   const handleInput = (event) => {
-    setValues({
+    setForm({
       ...form,
       [event.target.name]: event.target.value,
     });
+    console.log(form);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.loginRequest(form);
-    props.history.push('/');
+    props.loginUser(form, '/');
   };
 
   return (
@@ -41,6 +46,7 @@ const Login = (props) => {
               className='input--login'
               placeholder='Correo'
               onChange={handleInput}
+              required
             />
             <input
               name='password'
@@ -50,13 +56,14 @@ const Login = (props) => {
               className='input--login'
               placeholder='Contraseña'
               onChange={handleInput}
+              required
             />
             <button className='button' type='submit'>
               Iniciar Sesión
             </button>
             <div className='login__container--remember-me'>
               <label htmlFor='cbox1'>
-                <input type='checkbox' id='cbox1' value='checkbox' />
+                <input name='rememberMe' type='checkbox' id='cbox1' onClick={handleInput} />
                 Recuérdame
               </label>
               <a href='/'>Olvidé mi contraseña</a>
@@ -66,13 +73,19 @@ const Login = (props) => {
             <div className='google'>
               <img className='google__img' src={googleIcon} alt='Google' />
               <p>
-                <a href='/'>Inicia sesión con Google</a>
+                <a href='/auth/google/'>Inicia sesión con Google</a>
               </p>
             </div>
             <div className='twitter'>
               <img className='twitter__img' src={twitterIcon} alt='Twitter' />
               <p>
-                <a href='/'>Inicia sesión con Twitter</a>
+                <a href='/auth/twitter'>Inicia sesión con Twitter</a>
+              </p>
+            </div>
+            <div className='facebook'>
+              <img className='facebook__img' src={facebookIcon} alt='FacebookIcon' />
+              <p>
+                <a href='/auth/facebook'>Inicia sesión con Facebook</a>
               </p>
             </div>
           </section>
@@ -88,7 +101,11 @@ const Login = (props) => {
 };
 
 const mapDispacthToProps = {
-  loginRequest,
+  loginUser,
+};
+
+Login.propTypes = {
+  loginUser: PropTypes.func,
 };
 
 export default connect(null, mapDispacthToProps)(Login);
