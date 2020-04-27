@@ -66,7 +66,7 @@ app.post('/auth/sign-in', async (req, res, next) => {
         res.cookie('token', token, {
           httpOnly: !config.dev,
           secure: !config.dev,
-          // domain: 'https://diegoalesco95.github.io/Platzi-video/',
+          domain: 'https://platzi-videos.herokuapp.com/',
           maxAge: rememberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
         });
         res.status(200).json(user.user);
