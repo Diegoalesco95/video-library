@@ -6,21 +6,33 @@ import PageLoading from '../components/PageLoading';
 
 const Player = ({ match, playing, getVideoSource, history }) => {
   const { id } = match.params;
-  const [loading, setLoading] = useState(true);
+
   const hasPlaying = Object.keys(playing).length > 0;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getVideoSource(id);
     setLoading(false);
+    getVideoSource(id);
   }, []);
 
   return loading ? (
     <PageLoading />
   ) : hasPlaying ? (
     <div className='Player'>
-      <video controls autoPlay>
-        <source src={playing.source} type='video/mp4' />
-      </video>
+      <div className='video'>
+        <div className='flexible_video'>
+          <iframe
+            className='Youtube_video'
+            width='1080'
+            height='720'
+            title={playing.title}
+            src={playing.source}
+            frameBorder='0'
+            allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+            allowFullScreen
+          />
+        </div>
+      </div>
       <div className='Player-back'>
         <button type='button' onClick={() => history.goBack()}>
           Regresar

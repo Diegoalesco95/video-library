@@ -11,6 +11,10 @@
 - Agregar capacidades de autenticación usando Passport.js
 - Implementar pruebas tanto en el Backend como en el Frontend con Jest
 
+## Vista de Home
+
+![Home Preview](.readme-static/home_preview.png)
+
 ## Vista del Login
 
 ![Login Preview](.readme-static/login_preview.png)

@@ -123,7 +123,7 @@ const renderApp = async (req, res, next) => {
         playing: {},
         userList,
         myList,
-        trends: movieList.filter((movie) => movie.contentRating === 'NC-17' && movie._id),
+        trends: movieList.filter((movie) => movie.contentRating === 'NC-17' && 'PG' && movie._id),
         originals: movieList.filter((movie) => movie.contentRating === 'G' && movie._id),
       };
     } catch (error) {

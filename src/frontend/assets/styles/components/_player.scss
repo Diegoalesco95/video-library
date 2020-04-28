@@ -1,7 +1,7 @@
 /*------------------------------------*\
   $PLAYER
 \*------------------------------------*/
-video {
+.video {
   object-fit: cover;
   width: 100vw;
   height: 100vh;
@@ -11,8 +11,27 @@ video {
   left: 0;
 }
 
-video:hover .Player-back {
+.video:hover .Player-back {
   display: block;
+}
+
+.flexible_video {
+  width: 100%;
+  height: 0;
+  padding-top: 56.25%;
+  background: black;
+  /* opacity: 0.3; */
+  position: relative;
+}
+
+.Youtube_video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
 
 .Player-back {

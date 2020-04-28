@@ -3,7 +3,7 @@ import { LOADING, SET_FAVORITE, DELETE_FAVORITE, LOGIN_REQUEST, LOGOUT_REQUEST, 
 export default (state, action) => {
   switch (action.type) {
     case SET_FAVORITE:
-      if (state.myList.filter((element) => element.id === action.payload.id).length !== 0) {
+      if (state.myList.filter((element) => element._id === action.payload._id).length !== 0) {
         return state;
       }
       return {
@@ -35,7 +35,7 @@ export default (state, action) => {
       return {
         ...state,
         playing:
-          state.trends.find((item) => item.id === action.payload) || state.originals.find((item) => item.id === action.payload) || [],
+          state.trends.find((item) => item._id === action.payload) || state.originals.find((item) => item._id === action.payload) || [],
       };
     case LOADING:
       return {

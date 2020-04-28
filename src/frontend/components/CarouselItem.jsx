@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setFavoriteUserMovie, deleteFavoriteUserMovie } from '../actions';
+import { setFavoriteUserMovie, deleteFavoriteUserMovie, getVideoSource } from '../actions';
 
 import iconPlay from '../assets/static/play.png';
 import iconPlus from '../assets/static/plus.png';
@@ -10,7 +10,6 @@ import iconDelete from '../assets/static/remove-icon.png';
 
 const CarouselItem = (props) => {
   const {
-    id,
     _id,
     cover,
     title,
@@ -25,13 +24,12 @@ const CarouselItem = (props) => {
   } = props;
 
   const handleSetFavorite = () => {
-    const exist = myList.find((item) => item.id === id);
+    const exist = myList.find((item) => item._id === _id);
     if (exist) {
       console.log(`${title} ya fue agregado a la lista`);
     } else {
       setFavoriteUserMovie({
         _id,
-        id,
         cover,
         title,
         year,
@@ -45,9 +43,11 @@ const CarouselItem = (props) => {
   const handleDeleteFavorite = () => {
     const userMovieId = userList.find((userList) => userList.movieId === _id);
     deleteFavoriteUserMovie(userMovieId);
-    console.log(userMovieId);
-
     console.log(`${title} ha sido eliminado a la lista`);
+  };
+
+  const handlePlay = (_id) => {
+    getVideoSource(_id);
   };
 
   return (
@@ -55,8 +55,8 @@ const CarouselItem = (props) => {
       <img className='carousel-item__img' src={cover} alt={title} />
       <div className='carousel-item__details'>
         <div className='carousel-item__detail--icon'>
-          <Link to={`/player/${id}`}>
-            <img src={iconPlay} alt='Play' />
+          <Link to={`/player/${_id}`}>
+            <img src={iconPlay} alt='Play' onClick={() => handlePlay(_id)} />
           </Link>
 
           {isList ? (
@@ -90,6 +90,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   setFavoriteUserMovie,
   deleteFavoriteUserMovie,
+  getVideoSource,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarouselItem);
