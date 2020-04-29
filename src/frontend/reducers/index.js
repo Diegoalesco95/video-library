@@ -1,4 +1,13 @@
-import { LOADING, SET_FAVORITE, DELETE_FAVORITE, LOGIN_REQUEST, LOGOUT_REQUEST, SIGNUP_REQUEST, GET_VIDEO_SOURCE } from '../types/index';
+import {
+  LOADING,
+  SET_FAVORITE,
+  DELETE_FAVORITE,
+  LOGIN_REQUEST,
+  LOGOUT_REQUEST,
+  SIGNUP_REQUEST,
+  GET_VIDEO_SOURCE,
+  GET_USER_LIST,
+} from '../types/index';
 
 export default (state, action) => {
   switch (action.type) {
@@ -15,6 +24,11 @@ export default (state, action) => {
         ...state,
         myList: state.myList.filter((items) => items._id !== action.payload.movieId),
         userList: state.userList.filter((items) => items._id !== action.payload._id),
+      };
+    case GET_USER_LIST:
+      return {
+        ...state,
+        userList: [...state.userList, action.payload[0]],
       };
     case LOGIN_REQUEST:
       return {

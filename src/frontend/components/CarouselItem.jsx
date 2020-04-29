@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setFavoriteUserMovie, deleteFavoriteUserMovie, getVideoSource } from '../actions';
+import { setFavoriteUserMovie, deleteFavoriteUserMovie, getUserMovies } from '../actions';
 
 import iconPlay from '../assets/static/play.png';
 import iconPlus from '../assets/static/plus.png';
@@ -21,13 +21,12 @@ const CarouselItem = (props) => {
     myList,
     setFavoriteUserMovie,
     deleteFavoriteUserMovie,
+    getUserMovies,
   } = props;
 
   const handleSetFavorite = () => {
     const exist = myList.find((item) => item._id === _id);
-    if (exist) {
-      console.log(`${title} ya fue agregado a la lista`);
-    } else {
+    if (!exist) {
       setFavoriteUserMovie({
         _id,
         cover,
@@ -36,7 +35,10 @@ const CarouselItem = (props) => {
         contentRating,
         duration,
       });
+      getUserMovies({ _id });
       console.log(`${title} ha sido agregado a la lista`);
+    } else {
+      console.log(`${title} ya fue agregado a la lista`);
     }
   };
 
@@ -90,7 +92,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   setFavoriteUserMovie,
   deleteFavoriteUserMovie,
-  getVideoSource,
+  getUserMovies,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarouselItem);

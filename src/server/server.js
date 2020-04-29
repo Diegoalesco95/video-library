@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable global-require */
 import express, { json, static as _static } from 'express';
 import helmet, { permittedCrossDomainPolicies } from 'helmet';
@@ -9,6 +10,7 @@ import { renderRoutes } from 'react-router-config';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import cookieParser from 'cookie-parser';
+import session from 'express-session';
 import { unauthorized, badImplementation } from '@hapi/boom';
 import passport from 'passport';
 import axios from 'axios';
@@ -30,6 +32,7 @@ const app = express();
 
 app.use(json());
 app.use(cookieParser());
+app.use(session({ secret: config.sessionSecret, resave: false, rolling: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(_static(`${__dirname}/public`));
@@ -154,12 +157,11 @@ const renderApp = async (req, res, next) => {
 
 // STRATEGIES
 
-const THIRTY_DAYS_IN_SEC = 2592000;
-const TWO_HOURS_IN_SEC = 1800;
+const THIRTY_DAYS_IN_SEC = 86400000;
+const TWO_HOURS_IN_SEC = 3600000;
 
 app.post('/auth/sign-in', async (req, res, next) => {
   const { rememberMe } = req.body;
-
   passport.authenticate('basic', async (error, data) => {
     try {
       if (error || !data) {
@@ -170,10 +172,12 @@ app.post('/auth/sign-in', async (req, res, next) => {
           next(error);
         }
         const { token, ...user } = data;
+        console.log(token);
+
         res.cookie('token', token, {
           httpOnly: !config.dev,
           secure: !config.dev,
-          domain: 'platzi-videos.herokuapp.com',
+          // domain: 'platzi-videos.herokuapp.com',
           maxAge: rememberMe ? THIRTY_DAYS_IN_SEC : TWO_HOURS_IN_SEC,
         });
         res.status(200).json(user.user);
@@ -210,12 +214,11 @@ app.post('/auth/sign-up', async (req, res, next) => {
 app.get('/movies', async (req, res, next) => {
   try {
     const { token, id } = req.cookies;
-
+    debugger;
     const { data, status } = await axios({
-      url: `${config.apiUrl}/api/user-movies`,
+      url: `${config.apiUrl}/api/user-movies?userId=${id}`,
       headers: { Authorization: `Bearer ${token}` },
       method: 'get',
-      query: { id },
     });
 
     if (status !== 200) {

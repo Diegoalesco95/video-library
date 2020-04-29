@@ -15,7 +15,7 @@ const Login = (props) => {
     email: '',
     id: '',
     name: '',
-    rememberMe: '',
+    rememberMe: false,
   });
 
   const handleInput = (event) => {
@@ -62,7 +62,7 @@ const Login = (props) => {
             </button>
             <div className='login__container--remember-me'>
               <label htmlFor='cbox1'>
-                <input name='rememberMe' type='checkbox' id='cbox1' onClick={handleInput} />
+                <input name='rememberMe' type='checkbox' id='cbox1' value='true' onClick={handleInput} />
                 Recuérdame
               </label>
               <a href='/'>Olvidé mi contraseña</a>
