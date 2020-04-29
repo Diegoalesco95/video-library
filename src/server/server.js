@@ -172,7 +172,6 @@ app.post('/auth/sign-in', async (req, res, next) => {
           next(error);
         }
         const { token, ...user } = data;
-        console.log(token);
 
         res.cookie('token', token, {
           httpOnly: !config.dev,
