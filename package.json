@@ -10,7 +10,9 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "build": "webpack-cli --config webpack.config.js",
-    "start": "node src/server/index"
+    "start": "node src/server/index",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "jest": {
     "verbose": true,
@@ -76,7 +78,8 @@
     "redux-thunk": "^2.3.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "webpack-manifest-plugin": "^2.2.0"
+    "webpack-manifest-plugin": "^2.2.0",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.9.6",
@@ -109,5 +112,6 @@
   },
   "engines": {
     "node": "12.16.x"
-  }
+  },
+  "snyk": true
 }
