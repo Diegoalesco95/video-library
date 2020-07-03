@@ -1,6 +1,6 @@
 # Una App de Videos creada con React.JS
 
-¡Bienvenido y gracias por visitarme! Este es un proyecto elaborado en la escuela de JavaScript de  [Platzi](https://platzi.com/) en donde aplico varios de los conocimientos y habilidades adquiridas, entre ellas: 
+¡Bienvenido y gracias por visitarme! Este es un proyecto de aprendizaje elaborado en la escuela de JavaScript de [Platzi](https://platzi.com/escuela-javascript/) en donde aplico varios de los conocimientos y habilidades adquiridas, entre ellas:
 
 - Conocer el lenguaje Javascript, desarrollando rutinas y programas básicos usando el lenguaje
 - Desarrollar sitios web estáticos usando HTML y CSS

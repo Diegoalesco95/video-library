@@ -213,7 +213,6 @@ app.post('/auth/sign-up', async (req, res, next) => {
 app.get('/movies', async (req, res, next) => {
   try {
     const { token, id } = req.cookies;
-    debugger;
     const { data, status } = await axios({
       url: `${config.apiUrl}/api/user-movies?userId=${id}`,
       headers: { Authorization: `Bearer ${token}` },
