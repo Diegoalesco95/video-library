@@ -10,7 +10,9 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "build": "webpack-cli --config webpack.config.js",
-    "start": "node src/server/index"
+    "start": "node src/server/index",
+    "prepare": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "jest": {
     "verbose": true,
@@ -55,7 +57,7 @@
     "helmet": "^3.23.3",
     "history": "^4.10.1",
     "ignore-styles": "^5.0.1",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "md5": "^2.2.1",
     "passport": "^0.4.1",
     "passport-facebook": "^3.0.0",
@@ -76,7 +78,8 @@
     "redux-thunk": "^2.3.0",
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12",
-    "webpack-manifest-plugin": "^2.2.0"
+    "webpack-manifest-plugin": "^2.2.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.10.5",
@@ -109,5 +112,6 @@
   },
   "engines": {
     "node": "12.16.x"
-  }
+  },
+  "snyk": true
 }
