@@ -5,7 +5,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Router } from 'react-router';
 import { createBrowserHistory } from 'history';
-import reducer from './reducers';
+import reducer from '../../app/lib/state/reducers';
 import App from './routes/App';
 
 if (typeof window !== 'undefined') {

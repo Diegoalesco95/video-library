@@ -1,0 +1,23 @@
+@import '../utils/variables';
+@import '../utils/mixins';
+
+/*------------------------------------*\
+  $FOOTER
+\*------------------------------------*/
+.footer {
+  @include flex;
+  height: 100px;
+  width: 100%;
+
+  a {
+    color: $white;
+    cursor: pointer;
+    font-size: $alternativefontsize;
+    padding-left: 30px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

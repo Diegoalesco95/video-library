@@ -1,0 +1,5 @@
+@function relative-size($size) {
+  $result: $size / 16;
+
+  @return $result+rem;
+}

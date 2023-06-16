@@ -1,0 +1,16 @@
+@import '../utils/mixins';
+@import '../utils/variables';
+
+/*------------------------------------*\
+  $CATEGORIES
+\*------------------------------------*/
+.categories {
+
+  &__title {
+    color: $white;
+    font-size: $basefontsize;
+    position: absolute;
+    margin-left: 30px;
+    text-transform: capitalize;
+  }
+}

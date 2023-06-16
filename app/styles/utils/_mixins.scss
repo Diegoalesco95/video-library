@@ -1,0 +1,62 @@
+@mixin flex {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flicker-shadow($color) {
+  @keyframes flicker-shadow {
+
+    0%,
+    19%,
+    23%,
+    35%,
+    38%,
+    54%,
+    56%,
+    100% {
+      box-shadow:
+        0 0 8px #fff,
+        inset 0 0 8px #fff,
+        0 0 16px $color,
+        inset 0 0 16px $color,
+        0 0 16px $color,
+        inset 0 0 16px $color;
+    }
+
+    20%,
+    24%,
+    36%,
+    55% {
+      box-shadow: none;
+    }
+  }
+}
+
+@mixin flicker-text($color) {
+  @keyframes flicker-text {
+
+    0%,
+    19%,
+    21%,
+    23%,
+    25%,
+    54%,
+    56%,
+    100% {
+      text-shadow:
+        -0.2em -0.2em 1em #fff,
+        0.2em 0.2em 1em #fff,
+        0 0 2em $color,
+        0 0 4em $color,
+        0 0 6em $color,
+        0 0 8em $color,
+        0 0 10em $color;
+    }
+
+    20%,
+    24%,
+    55% {
+      text-shadow: none;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+@import '../utils/variables';
+
+/*------------------------------------*\
+  $GLOBALS
+\*------------------------------------*/
+
+.body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  font-family: $basefont;
+  font-size: $basefontsize;
+  background-color: $color-secondary;
+}

@@ -1,0 +1,88 @@
+@import '../utils/variables';
+@import '../utils/mixins';
+@import '../utils/functions';
+
+/*------------------------------------*\
+  $HEADER
+\*------------------------------------*/
+
+.header {
+  @include flex;
+  background-color: $color-secondary;
+  height: 80px;
+  justify-content: space-between;
+  width: 100%;
+
+  &__logo {
+    animation: flicker-text 2.5s infinite alternate;
+    border-radius: 2rem;
+    color: $color-alternative-2;
+    font-family: $alternative-font;
+    font-size: relative-size(48);
+    font-style: italic;
+    font-weight: 400;
+    padding: 0 relative-size(32);
+  }
+
+  &__menu {
+    margin-right: 30px;
+
+    & ul {
+      display: none;
+      position: absolute;
+      width: 100px;
+      padding: 0px;
+      margin: 0px 0px 0px -14px;
+      list-style: none;
+      text-align: right;
+    }
+
+    &:hover ul,
+    ul:hover {
+      display: block;
+    }
+
+    & li {
+      margin: 10px 0px;
+    }
+
+    & li a {
+      color: $white;
+      text-decoration: none;
+    }
+
+    & li a:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__menu--profile {
+    margin-right: 8px;
+    @include flex;
+    cursor: pointer;
+
+    & img {
+      margin-right: 8px;
+    }
+
+    & p {
+      color: $white;
+      margin: 0px;
+    }
+  }
+
+  &__menu--gravatar {
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
+  &.isLogin {
+    background-color: $color-principal;
+  }
+
+  &.isSignUp {
+    background-color: $color-alternative;
+  }
+}
+
+@include flicker-text($color-alternative-2);

@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { signUpUser } from '../actions';
+import { signUpUser } from '../lib/state/actions';
 import Header from '../components/Header';
-import ErrorMessages from '../utils/errorMessage';
+import ErrorMessages from '../../src/frontend/utils/errorMessage';
 
 import googleIcon from '../assets/static/google-icon.png';
 import twitterIcon from '../assets/static/twitter-icon.png';

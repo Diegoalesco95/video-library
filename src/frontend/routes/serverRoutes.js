@@ -1,8 +1,8 @@
-import Home from '../containers/Home';
-import Login from '../containers/Login';
-import Signup from '../containers/Signup';
-import Player from '../containers/Player';
-import NotFound from '../containers/NotFound';
+import Home from '../../../app/containers/Home';
+import Login from '../../../app/containers/Login';
+import Signup from '../../../app/containers/Signup';
+import Player from '../../../app/containers/Player';
+import NotFound from '../../../app/containers/NotFound';
 
 const serverRoutes = (isLogged) => {
   return [

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import NotFound from './NotFound';
-import { getVideoSource } from '../actions';
-import PageLoading from '../components/PageLoading';
+import { getVideoSource } from '../lib/state/actions';
+import PageLoading from '../../src/frontend/components/PageLoading';
 
 const Player = ({ match, playing, getVideoSource, history }) => {
   const { id } = match.params;
