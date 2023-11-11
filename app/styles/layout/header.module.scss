@@ -10,6 +10,10 @@
   justify-content: space-between;
   width: 100%;
 
+  @include for-phone-only {
+    height: auto;
+  }
+
   &__logo {
     animation: flicker-text 2.5s infinite alternate;
     border-radius: 2rem;
@@ -19,12 +23,22 @@
     font-style: italic;
     font-weight: 400;
     padding: 0 relative-size(32);
+
+    @include for-phone-only {
+      font-size: relative-size(24);
+      padding: relative-size(16) 0;
+    }
+
   }
 
   &__menu {
     margin-right: 30px;
     padding: 2rem 0;
     position: relative;
+
+    @include for-phone-only {
+      margin-right: 0;
+    }
 
     & ul {
       visibility: hidden;
@@ -87,6 +101,11 @@
 
     & img {
       margin-right: 8px;
+
+      @include for-phone-only {
+        width: 32px;
+        height: 32px;
+      }
     }
 
     & p {

@@ -26,12 +26,25 @@ const Home = () => {
 		state: { movies },
 	} = useContext(MoviesContext);
 
+	const [filteredMovies, setFilteredMovies] = useState(movies);
+
+	useEffect(() => {
+		setFilteredMovies(movies);
+	}, [movies]);
+
+	const handleFilterMovies = (name: string) => {
+		const filtered = movies.filter((movie) => movie.title.toLowerCase().includes(name.toLowerCase()));
+		setFilteredMovies(filtered);
+	};
+
+	console.log(filteredMovies);
+
 	return (
 		<>
 			<Header />
-			<Search />
+			<Search handleFilter={handleFilterMovies} />
 			<Genres />
-			<Movies movies={movies} title={`Movies ${selectedGenre?.name ? `- ${selectedGenre?.name}` : ''}`} />
+			<Movies movies={filteredMovies} title={`Movies ${selectedGenre?.name ? `- ${selectedGenre?.name}` : ''}`} />
 			<Footer />
 		</>
 	);

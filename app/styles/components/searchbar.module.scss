@@ -1,11 +1,7 @@
 @import '../utils/mixins';
 @import '../utils/variables';
 
-/*------------------------------------*\
-  $MAIN
-\*------------------------------------*/
-
-.main {
+.searchbar {
   @include flex;
   height: 300px;
   flex-direction: column;
@@ -15,23 +11,26 @@
     color: $white;
     font-size: 25px;
     margin-bottom: 50px;
+
+    @include for-phone-only {
+      text-align: center;
+    }
   }
-}
 
-
-.input {
-  height: 50px;
-  width: 70%;
-  padding: 0px 20px;
-  border: 2px solid $white;
-  border-radius: 50px;
-  color: $white;
-  font-family: $basefont;
-  font-size: $basefontsize;
-  background-color: rgba(255, 255, 255, 0.102);
-  outline: none;
-
-  ::placeholder {
+  &__input {
+    height: 50px;
+    width: 70%;
+    padding: 0px 20px;
+    border: 2px solid $white;
+    border-radius: 50px;
     color: $white;
+    font-family: $basefont;
+    font-size: $basefontsize;
+    background-color: rgba(255, 255, 255, 0.102);
+    outline: none;
+
+    &::placeholder {
+      color: $white;
+    }
   }
 }
