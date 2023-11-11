@@ -1,0 +1,35 @@
+  @use 'sass:color';
+  @import '../utils/variables';
+  @import '../utils/mixins';
+  @import '../utils/functions';
+
+  .form {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+  }
+
+  .button {
+    background-color: color.adjust($white, $alpha: -0.7);
+    border-radius: 25px;
+    border: none;
+    color: $white;
+    font-family: $basefont;
+    font-size: $basefontsize;
+    font-weight: bold;
+    height: 50px;
+    letter-spacing: 1px;
+    margin: 20px 10px 10px;
+    user-select: none;
+
+    &:hover {
+      background-color: color.adjust($white, $alpha: -0.5);
+      cursor: pointer;
+    }
+
+    &[disabled] {
+      color: color.adjust($white, $alpha: -0.5);
+      background-color: color.adjust($white, $alpha: -0.9);
+      cursor: not-allowed;
+    }
+  }

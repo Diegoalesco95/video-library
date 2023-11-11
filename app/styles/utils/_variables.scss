@@ -1,16 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo&family=Poppins:wght@200;300;400;700&display=swap');
 
+// Variables
+
+// Fonts
 $basefont: 'Poppins', sans-serif;
 $alternative-font: 'Exo', sans-serif;
 $basefontsize: 16px;
 $alternativefontsize: 14px;
+
+// Colors
 $color-principal: #570A57;
 $color-secondary: #2E0249;
 $color-alternative: #A91079;
 $color-alternative-2: #F806CC;
+
+$black: #000;
 $white: #ffffff;
+$red: #ff0000;
+
 $google: #db4437;
 $twitter: #00acee;
 $facebook: #29487d;
+
+// Borders
 $border: #ffffff4d;
+
+// Shadows
 $shadow: #0000004d;

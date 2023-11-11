@@ -1,19 +1,27 @@
 'use client';
 
-import React, { useContext } from 'react';
+// @packages
+import { useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-import { AuthContext } from 'app/lib/hooks/useAuth';
-import gravatar from 'app/utils/gravatar';
-import styles from 'app/styles/layout/header.module.scss';
 import clsx from 'clsx';
 
+// @scripts
+import { AuthContext } from 'app/context/auth.context';
+import useLogout from 'app/hooks/useLogout';
+import gravatar from 'app/utils/gravatar';
+
+// @styles
+import styles from 'app/styles/layout/header.module.scss';
+
 const Header = () => {
-	const currentUser = useContext(AuthContext);
+	const {
+		state: { isLoggedIn, user },
+	} = useContext(AuthContext);
+	const { onLogout } = useLogout();
 
 	const handleLogout = () => {
-		return null;
+		onLogout();
 	};
 
 	return (
@@ -23,16 +31,10 @@ const Header = () => {
 			</Link>
 			<div className={styles.header__menu}>
 				<div className={styles['header__menu--profile']}>
-					{currentUser.isLogin ? (
+					{isLoggedIn && user ? (
 						<>
-							<Image
-								className={styles['header__menu--gravatar']}
-								src={gravatar(currentUser.user.email)}
-								width={50}
-								height={50}
-								alt={currentUser.user.email}
-							/>
-							<p>{currentUser.user.name}</p>
+							<Image className={styles['header__menu--gravatar']} src={gravatar(user.email)} width={50} height={50} alt={user.email} />
+							<p>{user.name}</p>
 						</>
 					) : (
 						<>
@@ -42,24 +44,24 @@ const Header = () => {
 					)}
 				</div>
 				<ul>
-					{currentUser.isLogin ? (
+					{isLoggedIn ? (
 						<li>
-							<Link href='/'>Ver Pefil</Link>
+							<Link href='/account'>Account</Link>
 						</li>
 					) : null}
-					{currentUser.isLogin ? (
+					{isLoggedIn ? (
 						<li>
 							<Link href='/login' onClick={handleLogout}>
-								Cerrar Sesión
+								Logout
 							</Link>
 						</li>
 					) : (
 						<>
 							<li>
-								<Link href='/login'>Iniciar Sesión</Link>
+								<Link href='/login'>Login</Link>
 							</li>
 							<li>
-								<Link href='/signUp'>Registrarse</Link>
+								<Link href='/signup'>Sign up</Link>
 							</li>
 						</>
 					)}

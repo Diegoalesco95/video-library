@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import NotFound from './NotFound';
-import { getVideoSource } from '../state/actions';
+import { getVideoSource } from '../actions';
 import PageLoading from '../components/PageLoading';
 
 const Player = ({ match, playing, getVideoSource, history }) => {

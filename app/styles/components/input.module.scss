@@ -1,0 +1,24 @@
+  @use 'sass:color';
+  @import '../utils/variables';
+  @import '../utils/mixins';
+  @import '../utils/functions';
+
+  .input {
+    background-color: transparent;
+    border-bottom: 2px solid color.adjust($white, $alpha: -0.5);
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    color: $white;
+    font-family: $basefont;
+    font-size: $basefontsize;
+    height: auto;
+    margin-bottom: 1rem;
+    outline: none;
+    padding: 0.5rem;
+    position: relative;
+
+    &::placeholder {
+      color: color.adjust($white, $alpha: -0.2);
+    }
+  }

@@ -5,7 +5,7 @@ import { MoviesProvider } from 'app/context/movies.context';
 import useAuth from 'app/hooks/useAuth';
 
 // @components
-import Home from 'app/containers/Home';
+import Account from 'app/containers/Account';
 
 const HomePage = () => {
 	useAuth();
@@ -13,7 +13,7 @@ const HomePage = () => {
 	return (
 		<GenresProvider>
 			<MoviesProvider>
-				<Home />
+				<Account />
 			</MoviesProvider>
 		</GenresProvider>
 	);

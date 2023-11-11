@@ -1,0 +1,122 @@
+@use "sass:color";
+@import '../utils/mixins';
+@import '../utils/variables';
+
+
+.movie {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.4) 90%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 0.5rem;
+  border: 1px solid $border;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  min-height: 250px;
+  width: 200px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  transition: 300ms all;
+
+  &__img {
+    border-radius: 0.5rem 0.5rem 0 0;
+    height: 250px;
+    object-fit: cover;
+    width: 200px;
+    z-index: 1;
+  }
+
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1.5rem 0.5rem 1rem;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+
+    &--icon {
+      position: absolute;
+      top: -12px;
+      z-index: 1;
+      background-color: $black;
+      border-radius: 50%;
+
+      svg {
+        border-radius: 50%;
+        padding: 4px;
+
+        &.remove,
+        &.add {
+          border: 1px solid $white;
+          color: $white;
+          opacity: 0.75;
+
+          &.remove {
+            border-color: $color-alternative-2;
+          }
+
+          &:hover {
+            border-color: $color-alternative-2;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &__title,
+  &__release span {
+    color: $white;
+    max-width: 200px;
+    text-align: left;
+    width: 100%;
+  }
+
+  &__title {
+    font-size: 1rem;
+    margin: 0 0 0.25rem;
+    padding: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__release {
+    margin: 0;
+    padding: 0;
+
+    span {
+      font-size: 0.75rem;
+    }
+  }
+
+  &__vote-average {
+    align-items: center;
+    border-radius: 50%;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    position: absolute;
+    right: 5px;
+    top: -20px;
+    width: 40px;
+    z-index: 1;
+
+    &--progress {
+      visibility: hidden;
+      height: 0;
+      width: 0;
+    }
+
+    span {
+      color: $white;
+      font-size: 0.625rem;
+      font-weight: 700;
+      position: relative;
+    }
+  }
+}

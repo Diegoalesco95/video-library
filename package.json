@@ -24,14 +24,21 @@
 	},
 	"homepage": "https://github.com/Diegoalesco95/Platzi-video#readme",
 	"dependencies": {
+		"@hookform/resolvers": "^3.3.2",
 		"clsx": "^1.2.1",
+		"js-cookie": "^3.0.5",
 		"md5": "^2.3.0",
-		"next": "^13.4.4",
+		"next": "^14.0.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"react-icons": "^4.9.0"
+		"react-hook-form": "^7.47.0",
+		"react-icons": "^4.9.0",
+		"react-toastify": "^9.1.3",
+		"swr": "^2.2.4",
+		"yup": "^1.3.2"
 	},
 	"devDependencies": {
+		"@types/js-cookie": "^3.0.5",
 		"@types/md5": "^2.3.2",
 		"@types/node": "20.2.5",
 		"@types/react": "18.2.9",

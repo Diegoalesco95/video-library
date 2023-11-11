@@ -1,10 +1,7 @@
+@use 'sass:color';
 @import '../utils/variables';
 @import '../utils/mixins';
 @import '../utils/functions';
-
-/*------------------------------------*\
-  $HEADER
-\*------------------------------------*/
 
 .header {
   @include flex;
@@ -26,33 +23,60 @@
 
   &__menu {
     margin-right: 30px;
+    padding: 2rem 0;
+    position: relative;
 
     & ul {
-      display: none;
-      position: absolute;
-      width: 100px;
-      padding: 0px;
-      margin: 0px 0px 0px -14px;
+      visibility: hidden;
       list-style: none;
-      text-align: right;
+      margin: 1rem 0 0;
+      padding: 0;
+      position: absolute;
+      left: 0;
+      width: 100%;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 15px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid $color-principal;
+      }
     }
 
     &:hover ul,
     ul:hover {
-      display: block;
+      visibility: visible;
+      background-color: $color-principal;
+      border-radius: 0.5rem;
+      box-shadow: 4px 4px 16px 0px $shadow;
     }
 
     & li {
-      margin: 10px 0px;
+      margin: 0;
+      padding: 0.25rem 1rem;
+      border-bottom: 1px solid $border;
+
+      &:hover {
+        background-color: color.adjust($black, $alpha: -0.8);
+        border-bottom-color: color.adjust($border, $alpha: -0.1);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     & li a {
+      display: block;
       color: $white;
+      text-align: left;
       text-decoration: none;
-    }
-
-    & li a:hover {
-      text-decoration: underline;
+      width: 100%;
     }
   }
 
