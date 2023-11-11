@@ -24,9 +24,7 @@ const Movie: React.FC<IMovieProps> = (props) => {
 	const { movie } = props;
 
 	const {
-		state: {
-			user: { id },
-		},
+		state: { user },
 	} = useContext(AuthContext);
 
 	const {
@@ -42,7 +40,7 @@ const Movie: React.FC<IMovieProps> = (props) => {
 	const handleSetFavorite = () => {
 		onCreateUserMovie({
 			movieId: movie._id,
-			userId: id,
+			userId: user?.id,
 		});
 	};
 

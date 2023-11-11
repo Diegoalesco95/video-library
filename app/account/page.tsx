@@ -1,21 +1,27 @@
-'use client';
+// @packages
+import type { Metadata } from 'next';
+
 // scripts
 import { GenresProvider } from 'app/context/genres.context';
 import { MoviesProvider } from 'app/context/movies.context';
-import useAuth from 'app/hooks/useAuth';
 
 // @components
+import Auth from 'app/containers/Auth';
 import Account from 'app/containers/Account';
 
-const HomePage = () => {
-	useAuth();
+export const metadata: Metadata = {
+	title: 'Account',
+};
 
+const HomePage = () => {
 	return (
-		<GenresProvider>
-			<MoviesProvider>
-				<Account />
-			</MoviesProvider>
-		</GenresProvider>
+		<Auth>
+			<GenresProvider>
+				<MoviesProvider>
+					<Account />
+				</MoviesProvider>
+			</GenresProvider>
+		</Auth>
 	);
 };
 

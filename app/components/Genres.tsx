@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 
 // @components
 import Genre from 'app/components/Genre';
+import { GenreLoader } from 'app/components/Loader';
 
 // @scripts
 import { GenresContext } from 'app/context/genres.context';
@@ -14,25 +15,8 @@ import useGenres from 'app/hooks/useGenres';
 // @styles
 import styles from 'app/styles/components/genres.module.scss';
 
-// @types
-import { IGenre } from 'app/types/genres';
-
 const isThereGenres = (genres: {}) => {
 	return Object.keys(genres).length > 0;
-};
-
-const listGenres = (genres: IGenre[]) => {
-	if (isThereGenres(genres)) {
-		return (
-			<div className={styles.container}>
-				{genres.map((genre) => (
-					<Genre key={genre?.id} genre={genre} />
-				))}
-			</div>
-		);
-	}
-
-	return null;
 };
 
 const Genres = () => {
@@ -50,7 +34,12 @@ const Genres = () => {
 	return (
 		<section className={styles.genres}>
 			<h2 className={styles.title}>Categories</h2>
-			{listGenres(genres)}
+			{
+				<div className={styles.container}>
+					{isLoading && <GenreLoader quantity={4} />}
+					{isThereGenres(genres) && genres.map((genre) => <Genre key={genre?.id} genre={genre} />)}
+				</div>
+			}
 		</section>
 	);
 };

@@ -1,3 +1,5 @@
+'use client';
+
 // @packages
 import { useContext, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';

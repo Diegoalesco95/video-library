@@ -23,7 +23,7 @@ const Home = () => {
 	} = useContext(GenresContext);
 
 	const {
-		state: { movies },
+		state: { movies, isLoading },
 	} = useContext(MoviesContext);
 
 	const [filteredMovies, setFilteredMovies] = useState(movies);
@@ -42,7 +42,7 @@ const Home = () => {
 			<Header />
 			<Search handleFilter={handleFilterMovies} />
 			<Genres />
-			<Movies movies={filteredMovies} title={`Movies ${selectedGenre?.name ? `- ${selectedGenre?.name}` : ''}`} />
+			<Movies isLoading={isLoading} movies={filteredMovies} title={`Movies ${selectedGenre?.name ? `- ${selectedGenre?.name}` : ''}`} />
 			<Footer />
 		</>
 	);

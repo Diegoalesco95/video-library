@@ -2,12 +2,13 @@
 
 // @packages
 import { ToastContainer } from 'react-toastify';
+
 // @scripts
 import { AuthProvider } from 'app/context/auth.context';
+import { UserMoviesProvider } from 'app/context/userMovies.context';
 
 // @styles
 import 'react-toastify/dist/ReactToastify.css';
-import { UserMoviesProvider } from 'app/context/userMovies.context';
 
 export const Providers = ({ children }) => {
 	return (

@@ -1,13 +1,20 @@
-'use client';
+// @packages
+import type { Metadata } from 'next';
 
-// @scripts
-import useAuth from 'app/hooks/useAuth';
 // @components
+import Auth from 'app/containers/Auth';
 import Signup from 'app/containers/Signup';
 
+export const metadata: Metadata = {
+	title: 'Signup',
+};
+
 const LoginPage = () => {
-	useAuth();
-	return <Signup />;
+	return (
+		<Auth>
+			<Signup />
+		</Auth>
+	);
 };
 
 export default LoginPage;
