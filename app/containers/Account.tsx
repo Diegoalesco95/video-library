@@ -29,7 +29,6 @@ const Account = () => {
 	useEffect(() => {
 		if (userMovies.length > 0) {
 			const moviesByFavorite = movies.filter((movie) => userMovies.find((userMovie) => userMovie.movieId === movie._id));
-			console.log('moviesByFavorite', moviesByFavorite);
 
 			setFavoriteMovies(moviesByFavorite);
 		} else {

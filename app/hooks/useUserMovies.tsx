@@ -56,7 +56,6 @@ const createUserMovie = async (url: string, { arg }: { arg: TUserMovieRequest })
 const deleteUserMovie = async (url: string, { arg }: { arg: string }) => {
 	const token = Cookies.get('token');
 	const newUrl = `${url}/${arg}`;
-	console.log('newUrl', newUrl);
 
 	const resp = await fetch(newUrl, {
 		method: 'DELETE',

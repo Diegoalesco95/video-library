@@ -37,8 +37,6 @@ const Home = () => {
 		setFilteredMovies(filtered);
 	};
 
-	console.log(filteredMovies);
-
 	return (
 		<>
 			<Header />
