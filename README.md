@@ -1,40 +1,25 @@
-# Una App de Videos creada con React.JS
+# A Video App created with React.JS
 
-¡Bienvenido y gracias por visitarme! Este es un proyecto de aprendizaje elaborado en la escuela de JavaScript de [Platzi](https://platzi.com/escuela-javascript/) en donde aplico varios de los conocimientos y habilidades adquiridas, entre ellas:
+Welcome and thanks for visiting me! This is a learning project developed.
 
-- Conocer el lenguaje Javascript, desarrollando rutinas y programas básicos usando el lenguaje
-- Desarrollar sitios web estáticos usando HTML y CSS
-- Agregar capacidades de interactividad con Javascript usando React, React Router y Redux
-- Trabajar con Javascript en el backend usando Node.js, Express y MongoDB
-- Implementar SSR en tus proyectos para mejorar la percepción de velocidad de tu sitio
-- Realizar la integración del Backend y el Frontend de la aplicación
-- Agregar capacidades de autenticación usando Passport.js
-- Implementar pruebas tanto en el Backend como en el Frontend con Jest
-
-## Vista de Home
+## Home View
 
 ![Home Preview](.readme-static/home_preview.png)
 
-## Vista del Login
+## Login View
 
 ![Login Preview](.readme-static/login_preview.png)
 
-## Vista de Registro
+## How does it work?
 
-![Sign Up Preview](.readme-static/signup_preview.png)
+If you want to clone the project, you must have Node.JS 18 and follow the following instructions.
 
-[Ver la aplicación](https://platzi-videos.herokuapp.com)
+- `npm install` to install dependencies.
+- `npm run dev` for the development environment.
+- `npm run build && npm start` for the production environment.
 
-## ¿Cómo funciona?
+Keep in mind that the `.env` file must be configured with your own environment variables if used.
 
-Si desea, clonar el proyecto es necesario contar con Node.JS 12.6.x y seguir las siguientes instrucciones.
-
-- `npm install` para instalar las dependencias.
-- `npm run dev` para el entorno de desarrollo.
-- `npm run build && npm start` para el entorno de producción.
-
-Tener en cuenta que se debe configurar el archivo `.env` con las variables de entorno propias en caso de ser usadas.
-
-## Licencia
+## License
 
 [MIT License](LICENSE)

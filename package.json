@@ -1,6 +1,6 @@
 {
 	"name": "video_library_app",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"description": "Video library web app",
 	"main": "index.js",
 	"scripts": {
