@@ -1,0 +1,25 @@
+@import '../utils/variables';
+@import '../utils/mixins';
+
+.footer {
+  @include flex;
+  height: 100px;
+  width: 100%;
+
+  @include for-phone-only {
+    flex-direction: column;
+    height: auto;
+  }
+
+  a {
+    color: $white;
+    cursor: pointer;
+    font-size: $alternativefontsize;
+    padding-left: 30px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

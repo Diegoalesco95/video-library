@@ -1,0 +1,82 @@
+// @use 'sass:color';
+@import '../utils/variables';
+@import '../utils/mixins';
+@import '../utils/functions';
+
+.not-found {
+  background: linear-gradient(to bottom, $color-principal, $color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 30px;
+  min-height: calc(100vh - 180px);
+
+  &>p {
+    color: $white;
+  }
+
+  &__number {
+    margin: 0;
+    font-size: 10rem;
+    font-weight: bold;
+    animation-name: hinge;
+    animation-duration: 2.5s;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+  }
+
+  &__text {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  &__button {
+    font-family: $basefont;
+    font-size: $basefontsize px;
+    letter-spacing: 1px;
+    color: $white;
+    margin: 10px;
+    padding: 0px 2rem;
+    border: none;
+    border-radius: 25px;
+    background-color: $border;
+    cursor: pointer;
+    height: 50px;
+
+    &:hover {
+      background-color: darken($border, 10%);
+    }
+  }
+}
+
+@keyframes hinge {
+  0% {
+    transform: rotate(0) translateY(-75%);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+
+  20%,
+  60% {
+    transform: rotate(80deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+
+  40% {
+    transform: rotate(60deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+
+  80% {
+    transform: rotate(60deg);
+    transform-origin: top left;
+    animation-timing-function: ease-in-out;
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}

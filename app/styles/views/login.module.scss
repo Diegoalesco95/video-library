@@ -1,0 +1,65 @@
+@use 'sass:color';
+@import '../utils/variables';
+@import '../utils/mixins';
+@import '../utils/functions';
+
+.login {
+  @include flex;
+  background: linear-gradient(to bottom, $color-principal, $color-secondary);
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 200px);
+  padding: 10px 30px;
+
+  &__container {
+    background-color: #ffffff1a;
+    border-radius: 40px;
+    border: 2px solid $white;
+    box-shadow: 0px 10px 10px $shadow;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 500px;
+    padding: 0px 68px;
+    width: 300px;
+
+    h2 {
+      text-align: center;
+    }
+
+    &--remember-me {
+      color: $white;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+
+      & a {
+        text-decoration: none;
+        color: $white;
+        font-size: 14px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+    }
+
+    &--register {
+      font-size: 14px;
+      text-align: center;
+
+      & a {
+        color: $white;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      & a:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

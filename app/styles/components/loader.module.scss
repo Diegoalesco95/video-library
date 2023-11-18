@@ -1,0 +1,77 @@
+@use "sass:color";
+@import '../utils/mixins';
+@import '../utils/variables';
+
+.genre {
+  border: 1px solid $border;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 100px;
+  overflow: hidden;
+
+  &__title {
+    animation: 1.5s shine linear infinite;
+    background-size: 200% 100%;
+    background: linear-gradient(100deg, #313131 8%, #2a2a2a 18%, #313131 33%);
+    border-radius: 0.5rem;
+    height: 25px;
+    margin-bottom: 0;
+    padding: 1rem 0.5rem;
+  }
+}
+
+.movie {
+  border: 1px solid $border;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.4) 90%, rgba(0, 0, 0, 0) 100%);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  margin: 1rem;
+  min-height: 250px;
+  width: 200px;
+  overflow: hidden;
+
+  &__details {
+    padding: 1.5rem 0.5rem 1rem;
+  }
+
+  &__image,
+  &__title,
+  &__release {
+    animation: 1.5s shine linear infinite;
+    background-color: $black;
+    background: linear-gradient(100deg, #313131 8%, #2a2a2a 18%, #313131 33%);
+    border-radius: 0.5rem;
+    background-size: 200% 100%;
+  }
+
+
+  &__image {
+    min-height: 250px;
+    width: 200px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
+
+  &__title {
+    height: 25px;
+    margin-bottom: 0.25rem;
+  }
+
+  &__release {
+    height: 25px;
+    width: 50%;
+  }
+
+}
+
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}

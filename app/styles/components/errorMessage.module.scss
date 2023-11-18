@@ -1,0 +1,35 @@
+  @use 'sass:color';
+  @import '../utils/variables';
+  @import '../utils/mixins';
+  @import '../utils/functions';
+
+  .error {
+    background-color: color.adjust($white, $alpha: -0.8);
+    border-left: 0.25rem solid color.adjust($red, $alpha: -0.3);
+    color: $white;
+    font-size: 0.625rem;
+    font-weight: 400;
+    height: 0;
+    padding: 0;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    visibility: hidden;
+
+    &::after {
+      border-bottom: 10px solid color.adjust($white, $alpha: -0.8);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      content: '';
+      height: 0;
+      left: 15px;
+      position: absolute;
+      top: -10px;
+      width: 0;
+    }
+
+    &.show {
+      height: auto;
+      padding: 0.5rem;
+      visibility: visible;
+    }
+  }

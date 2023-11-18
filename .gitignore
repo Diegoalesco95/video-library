@@ -78,5 +78,6 @@ dist/
 src/server/public
 
 nextjs/
+.next
 
 server/public

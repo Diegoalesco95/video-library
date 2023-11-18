@@ -1,0 +1,26 @@
+@use 'sass:color';
+@import '../utils/mixins';
+@import '../utils/variables';
+
+.genre {
+  transition: all 0.3s linear;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  border: 1px solid $border;
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: $color-principal;
+  cursor: pointer;
+
+  &:hover,
+  &.selected {
+    background-color: color.adjust($color-principal, $alpha: -0.4);
+    border: 1px solid color.adjust($border, $alpha: 0.4);
+  }
+
+  span {
+    color: $white;
+  }
+}

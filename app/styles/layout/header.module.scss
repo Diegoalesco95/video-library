@@ -1,0 +1,131 @@
+@use 'sass:color';
+@import '../utils/variables';
+@import '../utils/mixins';
+@import '../utils/functions';
+
+.header {
+  @include flex;
+  background-color: $color-secondary;
+  height: 80px;
+  justify-content: space-between;
+  width: 100%;
+
+  @include for-phone-only {
+    height: auto;
+  }
+
+  &__logo {
+    animation: flicker-text 2.5s infinite alternate;
+    border-radius: 2rem;
+    color: $color-alternative-2;
+    font-family: $alternative-font;
+    font-size: relative-size(48);
+    font-style: italic;
+    font-weight: 400;
+    padding: 0 relative-size(32);
+
+    @include for-phone-only {
+      font-size: relative-size(24);
+      padding: relative-size(16) 0;
+    }
+
+  }
+
+  &__menu {
+    margin-right: 30px;
+    padding: 2rem 0;
+    position: relative;
+
+    @include for-phone-only {
+      margin-right: 0;
+    }
+
+    & ul {
+      visibility: hidden;
+      list-style: none;
+      margin: 1rem 0 0;
+      padding: 0;
+      position: absolute;
+      left: 0;
+      width: 100%;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 15px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid $color-principal;
+      }
+    }
+
+    &:hover ul,
+    ul:hover {
+      visibility: visible;
+      background-color: $color-principal;
+      border-radius: 0.5rem;
+      box-shadow: 4px 4px 16px 0px $shadow;
+    }
+
+    & li {
+      margin: 0;
+      padding: 0.25rem 1rem;
+      border-bottom: 1px solid $border;
+
+      &:hover {
+        background-color: color.adjust($black, $alpha: -0.8);
+        border-bottom-color: color.adjust($border, $alpha: -0.1);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    & li a {
+      display: block;
+      color: $white;
+      text-align: left;
+      text-decoration: none;
+      width: 100%;
+    }
+  }
+
+  &__menu--profile {
+    margin-right: 8px;
+    @include flex;
+    cursor: pointer;
+
+    & img {
+      margin-right: 8px;
+
+      @include for-phone-only {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    & p {
+      color: $white;
+      margin: 0px;
+    }
+  }
+
+  &__menu--gravatar {
+    border-radius: 100%;
+    object-fit: cover;
+  }
+
+  &.isLogin {
+    background-color: $color-principal;
+  }
+
+  &.isSignUp {
+    background-color: $color-alternative;
+  }
+}
+
+@include flicker-text($color-alternative-2);

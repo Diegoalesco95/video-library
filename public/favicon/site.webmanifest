@@ -1,0 +1,14 @@
+{
+	"name": "Video Library",
+	"start_url": "/",
+	"short_name": "VL",
+	"icons": [
+		{ "src": "/favicon/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+		{ "src": "/favicon/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+	],
+	"theme_color": "#570A57",
+	"background_color": "#570A57",
+	"display_override": ["fullscreen", "minimal-ui", "window-controls-overlay"],
+	"display": "standalone",
+	"orientation": "portrait"
+}
